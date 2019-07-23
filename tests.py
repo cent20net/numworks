@@ -84,8 +84,8 @@ def afficher_menu_3():
 
 def afficher_menu_4():
     menu_4 = "4. Signe et extremum"
-    # A Améliorer, afficher Signe (+-+) est préférable
-    # 6 cas possibles : +-+ -+- +0+ -0- + -
+    # A Améliorer, afficher Signe (+-+), extremum (m) est préférable
+    # 6 cas possibles : +-+ -+- +0+ -0- + - plus (M) ou (m)
     print(menu_4)
 
 def afficher_menu_5():
@@ -119,7 +119,6 @@ def executer_menu_5():
     # a faire : Factorisation formelle + formatage avec les valeurs approchées
 
 def afficher_menu_sommaire():
-    calculer() 
     for i in range(6):
         eval("afficher_menu_{}()".format(i))
 
@@ -129,4 +128,4 @@ calculer_trinome()
 ameliorer_variables()
 afficher_menu_sommaire()
 
-# il manque le menu qui sert les fonctions d'affichage et d'éxécution ... S'inspirer de celui d'Arthur
+# il manque le menu qui sert les fonctions d'affichage et d'éxécution ... S'inspirer de celui d'arthur
