@@ -1,4 +1,8 @@
-  
+# En cours de création. livraison mi aout 2018
+# Ce script sera expliqué et commenté en détail sur le site internet https://nsi.xyz/ (URL exacte à préciser après publication)
+# Transfert automatique vers la NumWorks depuis https://workshop.numworks.com/python/cent20/polynome_degre2
+# Auteurs : Arthur Jacquin, Kevin Fedyna, Vincent Robert.
+
 from math import sqrt
 
 a,b,c="a","b","c" #ne sert que pour le premier affichage de afficher_menu_0()
