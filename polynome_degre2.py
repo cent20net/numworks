@@ -37,10 +37,8 @@ def calculer_nb_solutions():
         # Spoil Tale S
         
 def definir_solutions():
-    x=(-b)/(2*a)
-    y=(sqrt(abs(d)))/(2*a)
-    x = round(x,8)
-    y = round(y,8)
+    x=round((-b)/(2*a),8)
+    y=round((sqrt(abs(d)))/(2*a),8)
     return x,y    
 
 def afficher_menu_0():
@@ -201,7 +199,63 @@ def executer_menu_4():
     # On peut faire très simple (texte), beau (tableau) + texte , complexe (couche graphique tableau de signe)
 
 def executer_menu_5():
-   afficher_menu_0()
+    afficher_menu_0()
+    print("Factorisation:")
+    x,y = definir_solutions()
+    if x+y==int(x+y):
+        x1 = int(x+y)
+    else:
+        x1 = x+y
+    if x-y==int(x-y):
+        x2 = int(x-y)
+    else:
+        x2 = x-y
+    if d==0:
+        print("P(x) = a(x-(-b/2a))^2")
+        print("P(x) = {}(x-({}/2*{}))^2".format(a,-b,a))
+        if x1<0:
+            print("P(x) = {}(x+{})^2".format(a,-x1))
+        elif x1>0:
+            print("P(x) = {}(x{})^2".format(a,-x1))
+        else:
+            print("P(x) = {}x^2".format(a))
+    elif d>0:
+        print("P(x) = a(x-x1)(x-x2)")
+        formuleFactorisation = "P(x) = {}(x".format(a)
+        if x1<0:
+            formuleFactorisation = formuleFactorisation+"+{})(x".format(-x1)
+        elif x1>0:
+            formuleFactorisation = formuleFactorisation+"{})(x".format(-x1)
+        else:
+            formuleFactorisation = formuleFactorisation+")(x"
+        if x2<0:
+            formuleFactorisation = formuleFactorisation+"+{})".format(-x2)
+        elif x2>0:
+            formuleFactorisation = formuleFactorisation+"{})".format(-x2)
+        else:
+            formuleFactorisation = formuleFactorisation+")"
+        print(formuleFactorisation)
+    else:
+        print("P(x) = a(x-z1)(x-z2)")
+        formuleFactorisation = "P(x) = {}(x".format(a)
+        if x<0:
+            formuleFactorisation = formuleFactorisation+"+{}".format(-x)
+        elif x>0:
+            formuleFactorisation = formuleFactorisation+"{}".format(-x)
+        if y<0:
+            formuleFactorisation = formuleFactorisation+"+{}i)(x".format(-y)
+        elif y>0:
+            formuleFactorisation = formuleFactorisation+"{}i)(x".format(-y)
+        if x<0:
+            formuleFactorisation = formuleFactorisation+"+{}".format(-x)
+        elif x>0:
+            formuleFactorisation = formuleFactorisation+"{}".format(-x)
+        if y<0:
+            formuleFactorisation = formuleFactorisation+"{}i)".format(y)
+        elif y>0:
+            formuleFactorisation = formuleFactorisation+"+{}i)".format(y)
+        print(formuleFactorisation)
+        
     # a faire : Factorisation formelle + formatage avec les valeurs approchées
 
 # 3 lignes à effacer qd le menu sera fini > ce code devra être intégré dans le menu > Arthur
