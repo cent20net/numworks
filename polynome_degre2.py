@@ -172,18 +172,26 @@ def executer_menu_2():
 def executer_menu_3():
     afficher_menu_0()
     print("Calcul des racines:")
+    x,y = definir_solutions()
     if d<0:
         print("z1 = -b/2a + √|Δ|/2a i")
         print("z1 = {}/2*{} + √{}/2*{} i".format(-b,a,-d,a))
         print("z1 = {}/{} + √{}/{} i".format(-b,2*a,-d,2*a))
-        x,y = definir_solutions()
         print("z1 = {} + {} i".format(x,y))
         print("z2 = -b/2a - √|Δ|/2a i")
         print("z2 = {}/{} - √{}/{} i".format(-b,2*a,-d,2*a))
-        x,y = definir_solutions()
         print("z2 = {} - {} i".format(x,y))
     else:
-        print("x1 = (-b+√|Δ|)/2a")
+        print("x1 = (-b+√Δ)/2a")
+        print("x1 = ({}+√{})/2*{}".format(-b,d,a))
+        if d==0:
+            print("x1 = {}/{}".format(-b,2*a))
+        else:
+            print("x1 = ({}+√{})/{}".format(-b,d,2*a))
+        print("x1 = {}".format(x+y))
+        print("x2 = (-b-√Δ)/2a")
+        print("x2 = ({}-√{})/2*{}".format(-b,d,a))
+        print("x2 = {}".format(x-y))
         
     # a faire - Donner les détail du calcul des racines
 
