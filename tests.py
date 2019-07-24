@@ -7,12 +7,6 @@ def calculer_trinome():
     calculer_nb_solutions()
     definir_solutions()
 
-def ameliorer_variables():
-    global a,b,c
-    if a == int(a): a = int(a)
-    if b == int(b): b = int(b)
-    if c == int(c): c = int(c)    
-
 def definir_trinome():
     global a,b,c
     a=0
@@ -20,10 +14,14 @@ def definir_trinome():
         a=float(input('a = '))
     b=float(input('b = '))
     c=float(input('c = '))
+        if a == int(a): a = int(a)
+    if b == int(b): b = int(b)
+    if c == int(c): c = int(c
     
 def calculer_discriminant():
     global d
     d=float(b**2-4*a*c)
+    if d == int(d): d = int(d) 
 
 def calculer_nb_solutions():
     global nb
@@ -52,7 +50,6 @@ def afficher_menu_1():
 
 def afficher_menu_2():
     global d
-    if d == int(d): d = int(d) 
     if d<0:
         signe = "<0"
     elif d>0:
