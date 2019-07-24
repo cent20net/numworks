@@ -39,6 +39,8 @@ def calculer_nb_solutions():
 def definir_solutions():
     x=(-b)/(2*a)
     y=(sqrt(abs(d)))/(2*a)
+    x = round(x,8)
+    y = round(y,8)
     return x,y    
 
 def afficher_menu_0():
@@ -82,8 +84,8 @@ def afficher_menu_3():
         print("   z2= {} - {} i".format(x,y))
         # Spoil Tale S
     elif d>0:
-        x1=round(x+y,8)
-        x2=round(x-y,8)
+        x1=x+y
+        x2=x-y
         if x1 == int(x1): x1 = int(x1)
         if x2 == int(x2): x2 = int(x2)  
         print("3. Racines réelles distinctes : 2 ")
@@ -133,9 +135,9 @@ def executer_menu_1():
 def executer_menu_2():
     afficher_menu_0()
     print("Calcul du discriminant:")
-    print("d = b^2-4ac")
+    print("Δ = b^2-4ac")
     for i in range(3):
-        formuleDiscriminant = "d = "
+        formuleDiscriminant = "Δ = "
         if i==0:
             if b<0:
                 formuleDiscriminant = formuleDiscriminant+"({})^2-4*"
@@ -169,6 +171,20 @@ def executer_menu_2():
 
 def executer_menu_3():
     afficher_menu_0()
+    print("Calcul des racines:")
+    if d<0:
+        print("z1 = -b/2a + √|Δ|/2a i")
+        print("z1 = {}/2*{} + √{}/2*{} i".format(-b,a,-d,a))
+        print("z1 = {}/{} + √{}/{} i".format(-b,2*a,-d,2*a))
+        x,y = definir_solutions()
+        print("z1 = {} + {} i".format(x,y))
+        print("z2 = -b/2a - √|Δ|/2a i")
+        print("z2 = {}/{} - √{}/{} i".format(-b,2*a,-d,2*a))
+        x,y = definir_solutions()
+        print("z2 = {} - {} i".format(x,y))
+    else:
+        print("x1 = (-b+√|Δ|)/2a")
+        
     # a faire - Donner les détail du calcul des racines
 
 def executer_menu_4():
@@ -190,6 +206,7 @@ afficher_menu_0()
 definir_trinome()
 calculer_trinome()
 afficher_menu_sommaire()
+executer_menu_3()
 
 def menu(erreur):
     afficher_menu_0()
