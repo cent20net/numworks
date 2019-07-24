@@ -61,7 +61,7 @@ def afficher_menu_2():
     print(menu_2)
     
 def afficher_menu_3():
-    x,y = trinome_solutions()
+    x,y = definir_solutions()
     if d<0:
         print("3. Racines complexes conjuguées : 2 ")
         print("   z1= {} + {} i".format(x,y))
