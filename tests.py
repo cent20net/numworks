@@ -1,3 +1,4 @@
+  
 from math import sqrt
 
 a,b,c="a","b","c" #ne sert que pour le premier affichage de afficher_menu_0()
@@ -14,9 +15,9 @@ def definir_trinome():
         a=float(input('a = '))
     b=float(input('b = '))
     c=float(input('c = '))
-        if a == int(a): a = int(a)
+    if a == int(a): a = int(a)
     if b == int(b): b = int(b)
-    if c == int(c): c = int(c
+    if c == int(c): c = int(c)
     
 def calculer_discriminant():
     global d
@@ -125,3 +126,4 @@ calculer_trinome()
 afficher_menu_sommaire()
 
 # il manque le menu qui sert les fonctions d'affichage et d'éxécution ... S'inspirer de celui d'arthur
+
