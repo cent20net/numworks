@@ -40,16 +40,16 @@ def definir_solutions():
 def afficher_menu_0():
     print("Polynôme (équation) de degré 2")
     if a!="a":
-        expressionPolynome = "P(x)={}x^2"
+        expressionPolynome = "P(x)={}x^2".format(a)
         if b>0:
-            expressionPolynome = expressionPolynome+"+{}x"
+            expressionPolynome = expressionPolynome+"+{}x".format(b)
         if b<0:
-            expressionPolynome = expressionPolynome+"{}x"
+            expressionPolynome = expressionPolynome+"{}x".format(b)
         if c>0:
-            expressionPolynome = expressionPolynome+"+{}"
+            expressionPolynome = expressionPolynome+"+{}".format(c)
         if c<0:
-            expressionPolynome = expressionPolynome+"{}"
-        print(expressionPolynome.format(a,b,c))
+            expressionPolynome = expressionPolynome+"{}".format(c)
+        print(expressionPolynome)
     else:
         print("P(x)={}x^2+{}x+{} (=0)".format(a,b,c))
     print("")  
@@ -91,9 +91,26 @@ def afficher_menu_3():
        print("   x1=x2= {}".format(x))
 
 def afficher_menu_4():
-    menu_4 = "4. Signe et extremum"
-    # A Améliorer, afficher "Signe (+-+), extremum (m)" est préférable dans le menu
-    # 6 cas possibles : +-+ -+- +0+ -0- + - plus (M) ou (m)
+    menu_4 = "4. Signe "
+    if d<0:
+        if a<0:
+            menu_4 = menu_4+"(-)"
+        else:
+            menu_4 = menu_4+"(+)"
+    elif d==0:
+        if a<0:
+            menu_4 = menu_4+"(-0-)"
+        else:
+            menu_4 = menu_4+"(+0+)"
+    else:
+        if a<0:
+            menu_4 = menu_4+"(-+-)"
+        else:
+            menu_4 = menu_4+"(+-+)"
+    if a<0:
+        menu_4 = menu_4+", extremum (M)"
+    else:
+        menu_4 = menu_4+", extremum (m)"
     print(menu_4)
 
 def afficher_menu_5():
