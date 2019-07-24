@@ -132,6 +132,38 @@ def executer_menu_1():
     
 def executer_menu_2():
     afficher_menu_0()
+    print("Calcul du discriminant:")
+    print("d = b^2-4ac ; soit:")
+    for i in range(3):
+        formuleDiscriminant = "d = "
+        if i==0:
+            if b<0:
+                formuleDiscriminant = formuleDiscriminant+"({})^2-4*"
+            else:
+                formuleDiscriminant = formuleDiscriminant+"{}^2-4*"
+            if a<0:
+                formuleDiscriminant = formuleDiscriminant+"({})*"
+            else:
+                formuleDiscriminant = formuleDiscriminant+"{}*"
+            if c<0:
+                formuleDiscriminant = formuleDiscriminant+"({})"
+            else:
+                formuleDiscriminant = formuleDiscriminant+"{}"
+            print(formuleDiscriminant.format(b,a,c))
+        elif i==1:
+            calcDis = 4*a*c
+            if b<0:
+                formuleDiscriminant = formuleDiscriminant+"({})^2"
+            else:
+                formuleDiscriminant = formuleDiscriminant+"{}^2"
+            if calcDis<0:
+                formuleDiscriminant = formuleDiscriminant+"{}"
+            else:
+                formuleDiscriminant = formuleDiscriminant+"+{}"
+            print(formuleDiscriminant.format(b,calcDis))
+        else:
+            calcDis = b**2-calcDis
+            print(formuleDiscriminant+str(calcDis))
     # a faire - Donner les détail du calcul du discriminant
 
 def executer_menu_3():
