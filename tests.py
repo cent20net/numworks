@@ -122,7 +122,6 @@ def afficher_menu_sommaire():
 afficher_menu_0()
 definir_trinome()
 calculer_trinome()
-ameliorer_variables()
 afficher_menu_sommaire()
 
 # il manque le menu qui sert les fonctions d'affichage et d'éxécution ... S'inspirer de celui d'arthur
