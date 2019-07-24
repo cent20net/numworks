@@ -39,9 +39,19 @@ def definir_solutions():
 
 def afficher_menu_0():
     print("Polynôme (équation) de degré 2")
-    # A Améliorer, 2x^2+3x+-2 est une anomalie, l'astuce d'Arthur +(-2) n'est guère meilleure 
-    print("P(x)={}x^2+{}x+{} (=0)".format(a,b,c))
-    
+    if a!="a":
+        expressionPolynome = "P(x)={}x^2"
+        if b>0:
+            expressionPolynome = expressionPolynome+"+{}x"
+        if b<0:
+            expressionPolynome = expressionPolynome+"{}x"
+        if c>0:
+            expressionPolynome = expressionPolynome+"+{}"
+        if c<0:
+            expressionPolynome = expressionPolynome+"{}"
+        print(expressionPolynome.format(a,b,c))
+    else:
+        print("P(x)={}x^2+{}x+{} (=0)".format(a,b,c))
     print("")  
 
 def afficher_menu_1():
