@@ -56,7 +56,7 @@ def afficher_menu_2():
     elif d>0:
         signe = ">0"
     elif d==0:
-        signe = "1"
+        signe = ""
     menu_2 = "2. Discriminant = {} {} ".format(d,signe)
     print(menu_2)
     
