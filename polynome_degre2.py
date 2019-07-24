@@ -147,14 +147,17 @@ def executer_menu_5():
    afficher_menu_0()
     # a faire : Factorisation formelle + formatage avec les valeurs approchées
 
+# 3 lignes à effacer qd le menu sera fini > ce code devra être intégré dans le menu > Arthur
 def afficher_menu_sommaire():
     for i in range(6):
         eval("afficher_menu_{}()".format(i))
 
+# 4 lignes à effacer qd le menu sera fini
 afficher_menu_0()
 definir_trinome()
 calculer_trinome()
 afficher_menu_sommaire()
 
-# il manque le menu qui sert les fonctions d'affichage et d'éxécution ... S'inspirer de celui d'arthur
-
+def menu(erreur):
+    afficher_menu_0()
+    # il manque le menu qui sert les fonctions d'affichage et d'éxécution ... > Arthur
