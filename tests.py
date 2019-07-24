@@ -84,7 +84,7 @@ def afficher_menu_3():
 
 def afficher_menu_4():
     menu_4 = "4. Signe et extremum"
-    # A Améliorer, afficher Signe (+-+), extremum (m) est préférable
+    # A Améliorer, afficher "Signe (+-+), extremum (m)" est préférable dans le menu
     # 6 cas possibles : +-+ -+- +0+ -0- + - plus (M) ou (m)
     print(menu_4)
 
