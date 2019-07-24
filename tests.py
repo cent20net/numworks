@@ -1,6 +1,6 @@
 from math import sqrt
 
-a,b,c,d="a","b","c","d"
+a,b,c="a","b","c" #ne sert que pour le premier affichage de afficher_menu_0()
 
 def calculer_trinome():
     calculer_discriminant()
