@@ -206,7 +206,6 @@ afficher_menu_0()
 definir_trinome()
 calculer_trinome()
 afficher_menu_sommaire()
-executer_menu_3()
 
 def menu(erreur):
     afficher_menu_0()
