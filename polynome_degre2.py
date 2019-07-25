@@ -127,6 +127,9 @@ def afficher_menu_5():
         menu_5="5. Factorisation dans les réels"
     print(menu_5)
     
+def afficher_menu_6():
+    print("6. Quitter")
+    
 def executer_menu_1():
     afficher_menu_0()
     definir_trinome()
@@ -301,12 +304,13 @@ def optimiser(value):
 
 # 3 lignes à effacer qd le menu sera fini > ce code devra être intégré dans le menu > Arthur
 def menu():
-    for i in range(6):
+    for i in range(7):
         eval("afficher_menu_{}()".format(i))
-    custom_input("none",pint = 1,pbinf = 1,pbsup = 5)
-    eval("executer_menu_{}()".format(int(variable[0])))
-    input()
-    menu()
+    custom_input("none",pint = 1,pbinf = 1,pbsup = 6)
+    if variable[0]!=6:
+        eval("executer_menu_{}()".format(int(variable[0])))
+        input()
+        menu()
 
 # 4 lignes à effacer qd le menu sera fini
 afficher_menu_0()
