@@ -309,7 +309,7 @@ def menu():
     custom_input("none",pint = 1,pbinf = 1,pbsup = 6)
     if variable[0]!=6:
         eval("executer_menu_{}()".format(int(variable[0])))
-        input()
+        if variable[0]!=1: input()
         menu()
 
 # 4 lignes à effacer qd le menu sera fini
