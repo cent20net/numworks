@@ -38,7 +38,7 @@ def def_solutions():
     y=round((sqrt(abs(d)))/(2*a),8)
     return x,y
 
-def afficher_menu_0():
+def aff_menu_0():
     print("Polynôme (équation) de degré 2")
     if a!="a":
         exp_poly = "P(x)={}x^2".format(a)
@@ -55,12 +55,12 @@ def afficher_menu_0():
         print("P(x)={}x^2+{}x+{} (=0)".format(a,b,c))
     print("")  
 
-def afficher_menu_1():
+def aff_menu_1():
     menu_1 = "1. Changer les valeurs a,b,c"
     print(menu_1)
     # on pourrait réduire ces deux lignes mais on perd un interêt pédagogique
 
-def afficher_menu_2():
+def aff_menu_2():
     global d
     if d<0:
         signe = "<0"
@@ -71,7 +71,7 @@ def afficher_menu_2():
     menu_2 = "2. Discriminant = {} {} ".format(d,signe)
     print(menu_2)
     
-def afficher_menu_3():
+def aff_menu_3():
     x,y = def_solutions()
     if d<0:
         print("3. Racines complexes conjuguées : 2 ")
@@ -91,7 +91,7 @@ def afficher_menu_3():
        print("3. Racine réelle double : 1 ")
        print("   x1=x2= {}".format(x))
 
-def afficher_menu_4():
+def aff_menu_4():
     menu_4 = "4. Signe "
     if d<0:
         if a<0:
@@ -115,7 +115,7 @@ def afficher_menu_4():
     # On insère pas les coordonnées ? (arthur)
     print(menu_4)
 
-def afficher_menu_5():
+def aff_menu_5():
     if d<0:
         menu_5="5. Factorisation dans les complexes"
         # Spoil Tale S
@@ -123,16 +123,16 @@ def afficher_menu_5():
         menu_5="5. Factorisation dans les réels"
     print(menu_5)
     
-def afficher_menu_6():
+def aff_menu_6():
     print("6. Quitter")
     
-def executer_menu_1():
-    afficher_menu_0()
+def exec_menu_1():
+    aff_menu_0()
     def_trinome()
     # fini ! 
     
-def executer_menu_2():
-    afficher_menu_0()
+def exec_menu_2():
+    aff_menu_0()
     print("Calcul du discriminant:")
     print("Δ = b^2-4ac")
     for i in range(3):
@@ -168,8 +168,8 @@ def executer_menu_2():
             print(delta+str(calcDis))
     # a faire - Donner les détail du calcul du discriminant
 
-def executer_menu_3():
-    afficher_menu_0()
+def exec_menu_3():
+    aff_menu_0()
     print("Calcul des racines:")
     x,y = def_solutions()
     if d<0:
@@ -192,12 +192,12 @@ def executer_menu_3():
         print("x2 = ({}-√{})/2*{}".format(-b,d,a))
         print("x2 = {}".format(x-y))
 
-def executer_menu_4():
-    afficher_menu_0()
+def exec_menu_4():
+    aff_menu_0()
     # On peut faire très simple (texte), beau (tableau) + texte , complexe (couche graphique tableau de signe)
 
-def executer_menu_5():
-    afficher_menu_0()
+def exec_menu_5():
+    aff_menu_0()
     print("Factorisation:")
     x,y = def_solutions()
     if x+y==int(x+y):
@@ -292,14 +292,14 @@ def optimiser(value):
 
 def menu():
     for i in range(7):
-        eval("afficher_menu_{}()".format(i))
+        eval("aff_menu_{}()".format(i))
     custom_input("none",pint = 1,pbinf = 1,pbsup = 6)
     if var[0]!=6:
-        eval("executer_menu_{}()".format(int(var[0])))
+        eval("exec_menu_{}()".format(int(var[0])))
         if var[0]!=1: input()
         menu()
 
-afficher_menu_0()
+aff_menu_0()
 def_trinome()
 menu()
 
