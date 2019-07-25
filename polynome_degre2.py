@@ -221,46 +221,46 @@ def executer_menu_5():
         print("P(x) = a(x-x1)(x-x2)")
         print("Avec :")
         print("a = {}".format(a))
-        formuleFactorisation = "(x-x1) = (x"
+        fact = "(x-x1) = (x"
         if x1<0:
-            formuleFactorisation = formuleFactorisation+"+{})".format(-x1)
+            fact = fact+"+{})".format(-x1)
         elif x1>0:
-            formuleFactorisation = formuleFactorisation+"{})".format(-x1)
+            fact = fact+"{})".format(-x1)
         else:
-            formuleFactorisation = formuleFactorisation+")"
-        print(formuleFactorisation)
-        formuleFactorisation = "(x-x2) = (x"
+            fact = fact+")"
+        print(fact)
+        fact = "(x-x2) = (x"
         if x2<0:
-            formuleFactorisation = formuleFactorisation+"+{})".format(-x2)
+            fact = fact+"+{})".format(-x2)
         elif x2>0:
-            formuleFactorisation = formuleFactorisation+"{})".format(-x2)
+            fact = fact+"{})".format(-x2)
         else:
-            formuleFactorisation = formuleFactorisation+")"
-        print(formuleFactorisation)
+            fact = fact+")"
+        print(fact)
     else:
         print("P(x) = a(z-z1)(z-z2)")
         print("Avec :")
         print("a = {}".format(a))
-        formuleFactorisation = "(z-z1) = (z"
+        fact = "(z-z1) = (z"
         if x<0:
-            formuleFactorisation = formuleFactorisation+"+{}".format(-x)
+            fact = fact+"+{}".format(-x)
         elif x>0:
-            formuleFactorisation = formuleFactorisation+"{}".format(-x)
+            fact = fact+"{}".format(-x)
         if y<0:
-            formuleFactorisation = formuleFactorisation+"+{}i)".format(-y)
+            fact = fact+"+{}i)".format(-y)
         elif y>0:
-            formuleFactorisation = formuleFactorisation+"{}i)".format(-y)
-        print(formuleFactorisation)
-        formuleFactorisation = "(z-z2) = (z"
+            fact = fact+"{}i)".format(-y)
+        print(fact)
+        fact = "(z-z2) = (z"
         if x<0:
-            formuleFactorisation = formuleFactorisation+"+{}".format(-x)
+            fact = fact+"+{}".format(-x)
         elif x>0:
-            formuleFactorisation = formuleFactorisation+"{}".format(-x)
+            fact = fact+"{}".format(-x)
         if y<0:
-            formuleFactorisation = formuleFactorisation+"{}i)".format(y)
+            fact = fact+"{}i)".format(y)
         elif y>0:
-            formuleFactorisation = formuleFactorisation+"+{}i)".format(y)
-        print(formuleFactorisation)
+            fact = fact+"+{}i)".format(y)
+        print(fact)
 
 def custom_input(variable_demande,pdif0 = 0,pint = 0,pbinf = "none",pbsup = "none"):
     global value
