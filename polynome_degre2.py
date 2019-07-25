@@ -261,22 +261,22 @@ def exec_menu_5():
             fact = fact+"+{}i)".format(y)
         print(fact)
 
-def custom_input(variable_demande,pdif0 = 0,pint = 0,pbinf = "none",pbsup = "none"):
+def custom_input(var_dem,pdif0 = 0,pint = 0,pbinf = "none",pbsup = "none"):
     global value
-    if variable_demande != "none": print("{} =".format(str(variable_demande)))
+    if var_dem != "none": print("{} =".format(str(var_dem)))
     try: value = float(input())
     except:
         print("Entrez un numéro :")
-        custom_input(variable_demande,pdif0,pint,pbinf,pbsup)
+        custom_input(var_dem,pdif0,pint,pbinf,pbsup)
     if pdif0 == 1 and value == 0:
         print("La valeur doit être différente de zéro :")
-        custom_input(variable_demande,pdif0,pint,pbinf,pbsup)
+        custom_input(var_dem,pdif0,pint,pbinf,pbsup)
     if (pbinf != "none" and value < pbinf) or (pbsup != "none" and value > pbsup):
         print("La valeur doit être comprise entre {} et {} :".format(pbinf,pbsup))
-        custom_input(variable_demande,pdif0,pint,pbinf,pbsup)
+        custom_input(var_dem,pdif0,pint,pbinf,pbsup)
     elif (pint == 1 and int(value) != value):
         print("La valeur doit être entière :")
-        custom_input(variable_demande,pdif0,pint,pbinf,pbsup)
+        custom_input(var_dem,pdif0,pint,pbinf,pbsup)
     return optimiser(value)
     
 def optimiser(value):
