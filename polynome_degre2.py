@@ -16,16 +16,16 @@ def def_trinome():
     if a == int(a): a = int(a)
     if b == int(b): b = int(b)
     if c == int(c): c = int(c)
-    calc_discriminant()
-    calc_nb_solutions()
+    calc_delta()
+    calc_nb_sol()
     def_solutions()
     
-def calc_discriminant():
+def calc_delta():
     global d
     d=float(b**2-4*a*c)
     if d == int(d): d = int(d) 
 
-def calc_nb_solutions():
+def calc_nb_sol():
     global nb
     if d==0:
         nb=1
@@ -112,7 +112,7 @@ def aff_menu_4():
         menu_4 = menu_4+", extremum (M)"
     else:
         menu_4 = menu_4+", extremum (m)"
-    # On insère pas les coordonnées ? (arthur)
+    # On insère pas les coordonnées ? (arthur) > Si à ajouter ! (vincent)
     print(menu_4)
 
 def aff_menu_5():
@@ -166,7 +166,6 @@ def exec_menu_2():
         else:
             calcDis = b**2-4*a*c
             print(delta+str(calcDis))
-    # a faire - Donner les détail du calcul du discriminant
 
 def exec_menu_3():
     aff_menu_0()
@@ -194,7 +193,7 @@ def exec_menu_3():
 
 def exec_menu_4():
     aff_menu_0()
-    # On peut faire très simple (texte), beau (tableau) + texte , complexe (couche graphique tableau de signe)
+    # kevin ?
 
 def exec_menu_5():
     aff_menu_0()
