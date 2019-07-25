@@ -6,7 +6,7 @@
 from math import sqrt
 a,b,c="a","b","c"
 
-def definir_trinome():
+def def_trinome():
     global a,b,c
     a=0
     while a==0 :
@@ -16,16 +16,16 @@ def definir_trinome():
     if a == int(a): a = int(a)
     if b == int(b): b = int(b)
     if c == int(c): c = int(c)
-    calculer_discriminant()
-    calculer_nb_solutions()
-    definir_solutions()
+    calc_discriminant()
+    calc_nb_solutions()
+    def_solutions()
     
-def calculer_discriminant():
+def calc_discriminant():
     global d
     d=float(b**2-4*a*c)
     if d == int(d): d = int(d) 
 
-def calculer_nb_solutions():
+def calc_nb_solutions():
     global nb
     if d==0:
         nb=1
@@ -33,7 +33,7 @@ def calculer_nb_solutions():
         nb=2
         # Spoil Tale S
         
-def definir_solutions():
+def def_solutions():
     x=round((-b)/(2*a),8)
     y=round((sqrt(abs(d)))/(2*a),8)
     return x,y
@@ -72,7 +72,7 @@ def afficher_menu_2():
     print(menu_2)
     
 def afficher_menu_3():
-    x,y = definir_solutions()
+    x,y = def_solutions()
     if d<0:
         print("3. Racines complexes conjuguées : 2 ")
         print("   z1= {} + {} i".format(x,y))
@@ -128,7 +128,7 @@ def afficher_menu_6():
     
 def executer_menu_1():
     afficher_menu_0()
-    definir_trinome()
+    def_trinome()
     # fini ! 
     
 def executer_menu_2():
@@ -171,7 +171,7 @@ def executer_menu_2():
 def executer_menu_3():
     afficher_menu_0()
     print("Calcul des racines:")
-    x,y = definir_solutions()
+    x,y = def_solutions()
     if d<0:
         print("z1 = -b/2a + √|Δ|/2a i")
         print("z1 = {}/2*{} + √{}/2*{} i".format(-b,a,-d,a))
@@ -199,7 +199,7 @@ def executer_menu_4():
 def executer_menu_5():
     afficher_menu_0()
     print("Factorisation:")
-    x,y = definir_solutions()
+    x,y = def_solutions()
     if x+y==int(x+y):
         x1 = int(x+y)
     else:
@@ -300,7 +300,7 @@ def menu():
         menu()
 
 afficher_menu_0()
-definir_trinome()
+def_trinome()
 menu()
 
 
