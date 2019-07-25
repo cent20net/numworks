@@ -22,6 +22,7 @@ def definir_trinome():
     if a == int(a): a = int(a)
     if b == int(b): b = int(b)
     if c == int(c): c = int(c)
+    calculer_trinome()
     
 def calculer_discriminant():
     global d
@@ -39,17 +40,17 @@ def calculer_nb_solutions():
 def definir_solutions():
     x=round((-b)/(2*a),8)
     y=round((sqrt(abs(d)))/(2*a),8)
-    return x,y    
+    return x,y
 
 def afficher_menu_0():
     print("Polynôme (équation) de degré 2")
     if a!="a":
         expressionPolynome = "P(x)={}x^2".format(a)
-        if b>0:
+        if b >= 0:
             expressionPolynome = expressionPolynome+"+{}x".format(b)
         if b<0:
             expressionPolynome = expressionPolynome+"{}x".format(b)
-        if c>0:
+        if c >= 0:
             expressionPolynome = expressionPolynome+"+{}".format(c)
         if c<0:
             expressionPolynome = expressionPolynome+"{}".format(c)
@@ -82,10 +83,10 @@ def afficher_menu_3():
         print("   z2= {} - {} i".format(x,y))
         # Spoil Tale S
     elif d>0:
-        x1=x+y
-        x2=x-y
+        x1=min(x+y,x-y)
+        x2=max(x-y,x+y)
         if x1 == int(x1): x1 = int(x1)
-        if x2 == int(x2): x2 = int(x2)  
+        if x2 == int(x2): x2 = int(x2)
         print("3. Racines réelles distinctes : 2 ")
         print("   x1= {}".format(x1))
         print("   x2= {}".format(x2))
@@ -115,6 +116,7 @@ def afficher_menu_4():
         menu_4 = menu_4+", extremum (M)"
     else:
         menu_4 = menu_4+", extremum (m)"
+    # On insère pas les coordonnées ? (arthur)
     print(menu_4)
 
 def afficher_menu_5():
@@ -127,7 +129,7 @@ def afficher_menu_5():
     
 def executer_menu_1():
     afficher_menu_0()
-    definir_trinome()   
+    definir_trinome()
     # fini ! 
     
 def executer_menu_2():
@@ -221,17 +223,13 @@ def executer_menu_5():
             print("P(x) = {}x^2".format(a))
     elif d>0:
         print("P(x) = a(x-x1)(x-x2)")
-        print("Avec :")
-        print("a = {}".format(a))
-        formuleFactorisation = "(x-x1) = (x"
+        formuleFactorisation = "P(x) = {}(x".format(a)
         if x1<0:
-            formuleFactorisation = formuleFactorisation+"+{})".format(-x1)
+            formuleFactorisation = formuleFactorisation+"+{})(x".format(-x1)
         elif x1>0:
-            formuleFactorisation = formuleFactorisation+"{})".format(-x1)
+            formuleFactorisation = formuleFactorisation+"{})(x".format(-x1)
         else:
-            formuleFactorisation = formuleFactorisation+")"
-        print(formuleFactorisation)
-        formuleFactorisation = "(x-x2) = (x"
+            formuleFactorisation = formuleFactorisation+")(x"
         if x2<0:
             formuleFactorisation = formuleFactorisation+"+{})".format(-x2)
         elif x2>0:
@@ -240,20 +238,16 @@ def executer_menu_5():
             formuleFactorisation = formuleFactorisation+")"
         print(formuleFactorisation)
     else:
-        print("P(x) = a(z-z1)(z-z2)")
-        print("Avec :")
-        print("a = {}".format(a))
-        formuleFactorisation = "(z-z1) = (z"
+        print("P(x) = a(x-z1)(x-z2)")
+        formuleFactorisation = "P(x) = {}(x".format(a)
         if x<0:
             formuleFactorisation = formuleFactorisation+"+{}".format(-x)
         elif x>0:
             formuleFactorisation = formuleFactorisation+"{}".format(-x)
         if y<0:
-            formuleFactorisation = formuleFactorisation+"+{}i)".format(-y)
+            formuleFactorisation = formuleFactorisation+"+{}i)(x".format(-y)
         elif y>0:
-            formuleFactorisation = formuleFactorisation+"{}i)".format(-y)
-        print(formuleFactorisation)
-        formuleFactorisation = "(z-z2) = (z"
+            formuleFactorisation = formuleFactorisation+"{}i)(x".format(-y)
         if x<0:
             formuleFactorisation = formuleFactorisation+"+{}".format(-x)
         elif x>0:
@@ -266,17 +260,50 @@ def executer_menu_5():
         
     # a faire : Factorisation formelle + formatage avec les valeurs approchées
 
+def custom_input(variable_demande,pdif0 = 0,pint = 0,pbinf = "none",pbsup = "none"):
+    global value
+    if variable_demande != "none": print("{} =".format(str(variable_demande)))
+    try: value = float(input())
+    except:
+        print("Entrez un numéro :")
+        custom_input(variable_demande,pdif0,pint,pbinf,pbsup)
+    if pdif0 == 1 and value == 0:
+        print("La valeur doit être différente de zéro :")
+        custom_input(variable_demande,pdif0,pint,pbinf,pbsup)
+    if (pbinf != "none" and value < pbinf) or (pbsup != "none" and value > pbsup):
+        print("La valeur doit être comprise entre {} et {} :".format(pbinf,pbsup))
+        custom_input(variable_demande,pdif0,pint,pbinf,pbsup)
+    elif (pint == 1 and int(value) != value):
+        print("La valeur doit être entière :")
+        custom_input(variable_demande,pdif0,pint,pbinf,pbsup)
+    return optimiser(value)
+    
+def optimiser(value):
+    global variable
+    variable = [0,""]
+    if value == int(value): variable[0] = int(value)
+    else: variable[0] = value
+    if variable[0] >= 0: variable[1] = str(variable[0])
+    else: variable[1] = "({})".format(str(variable[0]))
+    variable[0] = float(variable[0])
+    return variable
+
+
+
+
 # 3 lignes à effacer qd le menu sera fini > ce code devra être intégré dans le menu > Arthur
-def afficher_menu_sommaire():
+def menu():
     for i in range(6):
         eval("afficher_menu_{}()".format(i))
+    custom_input("none",pint = 1,pbinf = 1,pbsup = 5)
+    eval("executer_menu_{}()".format(int(variable[0])))
+    input()
+    menu()
 
 # 4 lignes à effacer qd le menu sera fini
 afficher_menu_0()
 definir_trinome()
-calculer_trinome()
-afficher_menu_sommaire()
+menu()
 
-def menu(erreur):
-    afficher_menu_0()
-    # il manque le menu qui sert les fonctions d'affichage et d'éxécution ... > Arthur
+
+    
