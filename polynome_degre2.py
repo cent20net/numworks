@@ -4,13 +4,7 @@
 # Auteurs : Arthur Jacquin, Kevin Fedyna, Vincent Robert.
 
 from math import sqrt
-
 a,b,c="a","b","c"
-
-def calculer_trinome():
-    calculer_discriminant()
-    calculer_nb_solutions()
-    definir_solutions()
 
 def definir_trinome():
     global a,b,c
@@ -22,7 +16,9 @@ def definir_trinome():
     if a == int(a): a = int(a)
     if b == int(b): b = int(b)
     if c == int(c): c = int(c)
-    calculer_trinome()
+    calculer_discriminant()
+    calculer_nb_solutions()
+    definir_solutions()
     
 def calculer_discriminant():
     global d
