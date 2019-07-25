@@ -5,7 +5,7 @@
 
 from math import sqrt
 
-a,b,c="a","b","c" #ne sert que pour le premier affichage de afficher_menu_0()
+a,b,c="a","b","c"
 
 def calculer_trinome():
     calculer_discriminant()
@@ -45,16 +45,16 @@ def definir_solutions():
 def afficher_menu_0():
     print("Polynôme (équation) de degré 2")
     if a!="a":
-        expressionPolynome = "P(x)={}x^2".format(a)
+        exp_poly = "P(x)={}x^2".format(a)
         if b >= 0:
-            expressionPolynome = expressionPolynome+"+{}x".format(b)
+            exp_poly = exp_poly+"+{}x".format(b)
         if b<0:
-            expressionPolynome = expressionPolynome+"{}x".format(b)
+            exp_poly = exp_poly+"{}x".format(b)
         if c >= 0:
-            expressionPolynome = expressionPolynome+"+{}".format(c)
+            exp_poly = exp_poly+"+{}".format(c)
         if c<0:
-            expressionPolynome = expressionPolynome+"{}".format(c)
-        print(expressionPolynome)
+            exp_poly = exp_poly+"{}".format(c)
+        print(exp_poly)
     else:
         print("P(x)={}x^2+{}x+{} (=0)".format(a,b,c))
     print("")  
