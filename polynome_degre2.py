@@ -223,13 +223,17 @@ def executer_menu_5():
             print("P(x) = {}x^2".format(a))
     elif d>0:
         print("P(x) = a(x-x1)(x-x2)")
-        formuleFactorisation = "P(x) = {}(x".format(a)
+        print("Avec :")
+        print("a = {}".format(a))
+        formuleFactorisation = "(x-x1) = (x"
         if x1<0:
-            formuleFactorisation = formuleFactorisation+"+{})(x".format(-x1)
+            formuleFactorisation = formuleFactorisation+"+{})".format(-x1)
         elif x1>0:
-            formuleFactorisation = formuleFactorisation+"{})(x".format(-x1)
+            formuleFactorisation = formuleFactorisation+"{})".format(-x1)
         else:
-            formuleFactorisation = formuleFactorisation+")(x"
+            formuleFactorisation = formuleFactorisation+")"
+        print(formuleFactorisation)
+        formuleFactorisation = "(x-x2) = (x"
         if x2<0:
             formuleFactorisation = formuleFactorisation+"+{})".format(-x2)
         elif x2>0:
@@ -238,16 +242,20 @@ def executer_menu_5():
             formuleFactorisation = formuleFactorisation+")"
         print(formuleFactorisation)
     else:
-        print("P(x) = a(x-z1)(x-z2)")
-        formuleFactorisation = "P(x) = {}(x".format(a)
+        print("P(x) = a(z-z1)(z-z2)")
+        print("Avec :")
+        print("a = {}".format(a))
+        formuleFactorisation = "(z-z1) = (z"
         if x<0:
             formuleFactorisation = formuleFactorisation+"+{}".format(-x)
         elif x>0:
             formuleFactorisation = formuleFactorisation+"{}".format(-x)
         if y<0:
-            formuleFactorisation = formuleFactorisation+"+{}i)(x".format(-y)
+            formuleFactorisation = formuleFactorisation+"+{}i)".format(-y)
         elif y>0:
-            formuleFactorisation = formuleFactorisation+"{}i)(x".format(-y)
+            formuleFactorisation = formuleFactorisation+"{}i)".format(-y)
+        print(formuleFactorisation)
+        formuleFactorisation = "(z-z2) = (z"
         if x<0:
             formuleFactorisation = formuleFactorisation+"+{}".format(-x)
         elif x>0:
