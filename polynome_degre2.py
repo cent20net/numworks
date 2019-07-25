@@ -285,25 +285,24 @@ def custom_input(variable_demande,pdif0 = 0,pint = 0,pbinf = "none",pbsup = "non
     return optimiser(value)
     
 def optimiser(value):
-    global variable
-    variable = [0,""]
-    if value == int(value): variable[0] = int(value)
-    else: variable[0] = value
-    if variable[0] >= 0: variable[1] = str(variable[0])
-    else: variable[1] = "({})".format(str(variable[0]))
-    variable[0] = float(variable[0])
-    return variable
+    global var
+    var = [0,""]
+    if value == int(value): var[0] = int(value)
+    else: var[0] = value
+    if var[0] >= 0: var[1] = str(var[0])
+    else: var[1] = "({})".format(str(var[0]))
+    var[0] = float(var[0])
+    return var
 
 def menu():
     for i in range(7):
         eval("afficher_menu_{}()".format(i))
     custom_input("none",pint = 1,pbinf = 1,pbsup = 6)
-    if variable[0]!=6:
-        eval("executer_menu_{}()".format(int(variable[0])))
-        if variable[0]!=1: input()
+    if var[0]!=6:
+        eval("executer_menu_{}()".format(int(var[0])))
+        if var[0]!=1: input()
         menu()
 
-# 4 lignes à effacer qd le menu sera fini
 afficher_menu_0()
 definir_trinome()
 menu()
