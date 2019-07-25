@@ -87,9 +87,9 @@ def aff_menu_3():
         print("   x1= {}".format(x1))
         print("   x2= {}".format(x2))
     elif d==0:
-       if x == int(x): x = int(x)
-       print("3. Racine réelle double : 1 ")
-       print("   x1=x2= {}".format(x))
+        if x == int(x): x = int(x)
+        print("3. Racine réelle double : 1 ")
+        print("   x1=x2= {}".format(x))
 
 def aff_menu_4():
     menu_4 = "4. Signe "
