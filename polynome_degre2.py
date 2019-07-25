@@ -136,36 +136,36 @@ def executer_menu_2():
     print("Calcul du discriminant:")
     print("Δ = b^2-4ac")
     for i in range(3):
-        formuleDiscriminant = "Δ = "
+        delta = "Δ = "
         if i==0:
             if b<0:
-                formuleDiscriminant = formuleDiscriminant+"({})^2-4*"
+                delta = delta+"({})^2-4*"
             else:
-                formuleDiscriminant = formuleDiscriminant+"{}^2-4*"
+                delta = delta+"{}^2-4*"
             if a<0:
-                formuleDiscriminant = formuleDiscriminant+"({})*"
+                delta = delta+"({})*"
             else:
-                formuleDiscriminant = formuleDiscriminant+"{}*"
+                delta = delta+"{}*"
             if c<0:
-                formuleDiscriminant = formuleDiscriminant+"({})"
+                delta = delta+"({})"
             else:
-                formuleDiscriminant = formuleDiscriminant+"{}"
-            print(formuleDiscriminant.format(b,a,c))
+                delta = delta+"{}"
+            print(delta.format(b,a,c))
         elif i==1:
             calcDis = 4*a*c
             if b<0:
-                formuleDiscriminant = formuleDiscriminant+"({})^2"
+                delta = delta+"({})^2"
             else:
-                formuleDiscriminant = formuleDiscriminant+"{}^2"
+                delta = delta+"{}^2"
             if calcDis<0:
-                formuleDiscriminant = formuleDiscriminant+"+{}"
+                delta = delta+"+{}"
             else:
-                formuleDiscriminant = formuleDiscriminant+"{}"
+                delta = delta+"{}"
             calcDis = -1*calcDis
-            print(formuleDiscriminant.format(b,calcDis))
+            print(delta.format(b,calcDis))
         else:
             calcDis = b**2-4*a*c
-            print(formuleDiscriminant+str(calcDis))
+            print(delta+str(calcDis))
     # a faire - Donner les détail du calcul du discriminant
 
 def executer_menu_3():
