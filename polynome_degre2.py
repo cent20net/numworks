@@ -195,12 +195,9 @@ def executer_menu_3():
         print("x2 = (-b-√Δ)/2a")
         print("x2 = ({}-√{})/2*{}".format(-b,d,a))
         print("x2 = {}".format(x-y))
-        
-    # a faire - Donner les détail du calcul des racines
 
 def executer_menu_4():
     afficher_menu_0()
-    # a faire ... 
     # On peut faire très simple (texte), beau (tableau) + texte , complexe (couche graphique tableau de signe)
 
 def executer_menu_5():
@@ -268,8 +265,6 @@ def executer_menu_5():
         elif y>0:
             formuleFactorisation = formuleFactorisation+"+{}i)".format(y)
         print(formuleFactorisation)
-        
-    # a faire : Factorisation formelle + formatage avec les valeurs approchées
 
 def custom_input(variable_demande,pdif0 = 0,pint = 0,pbinf = "none",pbsup = "none"):
     global value
@@ -299,10 +294,6 @@ def optimiser(value):
     variable[0] = float(variable[0])
     return variable
 
-
-
-
-# 3 lignes à effacer qd le menu sera fini > ce code devra être intégré dans le menu > Arthur
 def menu():
     for i in range(7):
         eval("afficher_menu_{}()".format(i))
