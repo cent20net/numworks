@@ -4,6 +4,8 @@
 # Auteurs : Arthur Jacquin, Kevin Fedyna, Vincent Robert.
 
 from math import sqrt
+import sys
+
 a,b,c="a","b","c"
 
 def def_trinome():
@@ -261,19 +263,19 @@ def exec_menu_5():
             fact = fact+"+{}i)".format(y)
         print(fact)
 
-def menu_input(var_dem,pdif0 = 0,pint = 0,pbinf = "none",pbsup = "none"):
+def menu_input(var_dem,pdif0 = 0,pint = 0,inf = "rien",sup = "rien"):
     global choix
-    if var_dem != "none": print("{} =".format(str(var_dem)))
+    if var_dem != "rien": print("{} =".format(str(var_dem)))
     try: choix = float(input())
     except:
         print("Entrez un chiffre :")
-        menu_input(var_dem,pdif0,pint,pbinf,pbsup)    
-    if (pbinf != "none" and choix < pbinf) or (pbsup != "none" and choix > pbsup):
-        print("La valeur doit être un entier entre {} et {} :".format(pbinf,pbsup))
-        menu_input(var_dem,pdif0,pint,pbinf,pbsup)
+        menu_input(var_dem,pdif0,pint,inf,sup)    
+    if (inf != "rien" and choix < inf) or (sup != "rien" and choix > sup):
+        print("La valeur doit être un entier entre {} et {} :".format(inf,sup))
+        menu_input(var_dem,pdif0,pint,inf,sup)
     elif (pint == 1 and int(choix) != choix):
         print("La valeur doit être entière :")
-        menu_input(var_dem,pdif0,pint,pbinf,pbsup)
+        menu_input(var_dem,pdif0,pint,inf,sup)
     
 def optimiser(v):
     if v == int(v): v = int(v)
@@ -282,7 +284,7 @@ def optimiser(v):
 def menu():
     for i in range(7):
         eval("aff_menu_{}()".format(i))
-    menu_input("none",pint = 1,pbinf = 1,pbsup = 6)
+    menu_input("rien",pint = 1,inf = 1,sup = 6)
     if choix!=6:
         eval("exec_menu_{}()".format(int(choix)))
         if choix!=1: input()
@@ -292,5 +294,12 @@ aff_menu_0()
 def_trinome()
 menu()
 
-
+s=0
+for name in dir():
+    print("nom var = "+name)
+    print(globals()[name])
+    print(sys.getsizeof(globals()[name]))
+    s=s+sys.getsizeof(globals()[name])
+    print(s)
+  
     
