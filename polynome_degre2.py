@@ -289,7 +289,7 @@ def menu():
     choix=menu_input("none",pint = 1,pbinf = 1,pbsup = 6)
     if choix!=6:
         eval("exec_menu_{}()".format(int(choix)))
-        input()
+        if choix!=1: input()
         menu()
 
 aff_menu_0()
