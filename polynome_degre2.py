@@ -261,41 +261,35 @@ def exec_menu_5():
             fact = fact+"+{}i)".format(y)
         print(fact)
 
-def custom_input(var_dem,pdif0 = 0,pint = 0,pbinf = "none",pbsup = "none"):
-    global value
+def menu_input(var_dem,pdif0 = 0,pint = 0,pbinf = "none",pbsup = "none"):
+    global val
     if var_dem != "none": print("{} =".format(str(var_dem)))
-    try: value = float(input())
+    try: val = float(input())
     except:
         print("Entrez un numéro :")
-        custom_input(var_dem,pdif0,pint,pbinf,pbsup)
-    if pdif0 == 1 and value == 0:
+        menu_input(var_dem,pdif0,pint,pbinf,pbsup)
+    if pdif0 == 1 and val == 0:
         print("La valeur doit être différente de zéro :")
-        custom_input(var_dem,pdif0,pint,pbinf,pbsup)
-    if (pbinf != "none" and value < pbinf) or (pbsup != "none" and value > pbsup):
+        menu_input(var_dem,pdif0,pint,pbinf,pbsup)
+    if (pbinf != "none" and val < pbinf) or (pbsup != "none" and val > pbsup):
         print("La valeur doit être comprise entre {} et {} :".format(pbinf,pbsup))
-        custom_input(var_dem,pdif0,pint,pbinf,pbsup)
-    elif (pint == 1 and int(value) != value):
+        menu_input(var_dem,pdif0,pint,pbinf,pbsup)
+    elif (pint == 1 and int(val) != val):
         print("La valeur doit être entière :")
-        custom_input(var_dem,pdif0,pint,pbinf,pbsup)
-    return optimiser(value)
+        menu_input(var_dem,pdif0,pint,pbinf,pbsup)
+    return optimiser(val)
     
-def optimiser(value):
-    global var
-    var = [0,""]
-    if value == int(value): var[0] = int(value)
-    else: var[0] = value
-    if var[0] >= 0: var[1] = str(var[0])
-    else: var[1] = "({})".format(str(var[0]))
-    var[0] = float(var[0])
-    return var
+def optimiser(v):
+    if v == int(v): v = int(v)
+    return v
 
 def menu():
     for i in range(7):
         eval("aff_menu_{}()".format(i))
-    custom_input("none",pint = 1,pbinf = 1,pbsup = 6)
-    if var[0]!=6:
-        eval("exec_menu_{}()".format(int(var[0])))
-        if var[0]!=1: input()
+    choix=menu_input("none",pint = 1,pbinf = 1,pbsup = 6)
+    if choix!=6:
+        eval("exec_menu_{}()".format(int(choix)))
+        input()
         menu()
 
 aff_menu_0()
