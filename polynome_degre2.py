@@ -4,9 +4,13 @@
 # Auteurs : Arthur Jacquin, Kevin Fedyna, Vincent Robert.
 
 from math import sqrt
-import sys
+import sys # Supprimer ceci pour tester sur la numworks
 
 a,b,c="a","b","c"
+
+#TODO :  Objectif : On réduit le nombre de f° en passant de 19 à 10 max car chaque fois consomme 136 octet min...
+#TODO :  Si le compilateur réserve également 136 octet par chaine de charactère on est mal ... Surtout si il comprend pas que c'est la même chaine.
+#TODO : fusionner les 4 premières fonctions dans une f° def_calc_trinome()
 
 def def_trinome():
     global a,b,c
@@ -15,9 +19,9 @@ def def_trinome():
         a=float(input('a = '))
     b=float(input('b = '))
     c=float(input('c = '))
-    if a == int(a): a = int(a)
-    if b == int(b): b = int(b)
-    if c == int(c): c = int(c)
+    a=optimiser(a)
+    b=optimiser(b)
+    c=optimiser(c)
     calc_delta()
     calc_nb_sol()
     def_solutions()
@@ -25,7 +29,7 @@ def def_trinome():
 def calc_delta():
     global d
     d=float(b**2-4*a*c)
-    if d == int(d): d = int(d) 
+    d=optimiser(d) 
 
 def calc_nb_sol():
     global nb
@@ -39,6 +43,8 @@ def def_solutions():
     x=round((-b)/(2*a),8)
     y=round((sqrt(abs(d)))/(2*a),8)
     return x,y
+
+#TODO : fusionner les f° qui affichent le menu (sauf aff_menu_0), les aff_menu dans une unique f° aff_menu() 
 
 def aff_menu_0():
     print("Polynôme (équation) de degré 2")
@@ -60,7 +66,7 @@ def aff_menu_0():
 def aff_menu_1():
     menu_1 = "1. Changer les valeurs a,b,c"
     print(menu_1)
-    # on pourrait réduire ces deux lignes mais on perd un interêt pédagogique
+    # on pourrait réduire ces deux lignes mais on perd un interêt pédagogique > si on va réduire, obligé !
 
 def aff_menu_2():
     global d
@@ -114,7 +120,7 @@ def aff_menu_4():
         menu_4 = menu_4+", extremum (M)"
     else:
         menu_4 = menu_4+", extremum (m)"
-    # On insère pas les coordonnées ? (arthur) > Si à ajouter ! (vincent)
+    # On insère pas les coordonnées ? (arthur) > Si à ajouter mais dans exec_menu4 ! (vincent)
     print(menu_4)
 
 def aff_menu_5():
@@ -128,11 +134,13 @@ def aff_menu_5():
 def aff_menu_6():
     print("6. Quitter")
     
+    
 def exec_menu_1():
     aff_menu_0()
     def_trinome()
     # fini ! 
     
+#TODO : on doit garder les exec_menu_
 def exec_menu_2():
     aff_menu_0()
     print("Calcul du discriminant:")
@@ -195,7 +203,7 @@ def exec_menu_3():
 
 def exec_menu_4():
     aff_menu_0()
-    # kevin ?
+    # kevin ???
 
 def exec_menu_5():
     aff_menu_0()
@@ -263,6 +271,7 @@ def exec_menu_5():
             fact = fact+"+{}i)".format(y)
         print(fact)
 
+ # Je suis sur qu'on peut réduire encore      
 def menu_input(var_dem,pdif0 = 0,pint = 0,inf = "rien",sup = "rien"):
     global choix
     if var_dem != "rien": print("{} =".format(str(var_dem)))
@@ -294,12 +303,12 @@ aff_menu_0()
 def_trinome()
 menu()
 
-s=0
+s=0 # Supprimer ceci pour tester sur la numworks
 for name in dir():
     print("nom var = "+name)
     print(globals()[name])
-    print(sys.getsizeof(globals()[name]))
-    s=s+sys.getsizeof(globals()[name])
-    print(s)
+    print(sys.getsizeof(globals()[name])) # del
+    s=s+sys.getsizeof(globals()[name])  # del
+    print(s)  # del
   
     
