@@ -266,13 +266,10 @@ def menu_input(var_dem,pdif0 = 0,pint = 0,pbinf = "none",pbsup = "none"):
     if var_dem != "none": print("{} =".format(str(var_dem)))
     try: val = float(input())
     except:
-        print("Entrez un numéro :")
-        menu_input(var_dem,pdif0,pint,pbinf,pbsup)
-    if pdif0 == 1 and val == 0:
-        print("La valeur doit être différente de zéro :")
-        menu_input(var_dem,pdif0,pint,pbinf,pbsup)
+        print("Entrez un chiffre :")
+        menu_input(var_dem,pdif0,pint,pbinf,pbsup)    
     if (pbinf != "none" and val < pbinf) or (pbsup != "none" and val > pbsup):
-        print("La valeur doit être comprise entre {} et {} :".format(pbinf,pbsup))
+        print("La valeur doit être un entier entre {} et {} :".format(pbinf,pbsup))
         menu_input(var_dem,pdif0,pint,pbinf,pbsup)
     elif (pint == 1 and int(val) != val):
         print("La valeur doit être entière :")
