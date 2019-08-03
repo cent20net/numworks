@@ -85,12 +85,12 @@ def exec_menu(i):
 	elif i==6 :
 		pass
 		
-def optimiser(v,av="",ap="",p=0,r=8,af=0,br=0):
-		# valeur, str avant, str apres, arrondi, afficher signe, sauter v ligne
+def optimiser(v,av="",ap="",p=0,r=8,naf=0,br=0):
+		# valeur, str avant, str apres, afficher signe, arrondi, ne pas afficher un 0, sauter v ligne
 		if br!=0 :
 			for i in range(v): print("")
 		elif br==0 :
-			if v==0 and af==1 : return ""
+			if v==0 and naf==1 : return ""
 			if v == int(v): v = int(v)
 			else : v=round(v,r)
 			if av=="" and ap=="" and p==0 : return v
