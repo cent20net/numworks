@@ -101,7 +101,7 @@ def optimiser(v,av="",ap="",p=0,r=8,naf=0,br=0):
 def menu(warning=""):
 		aff_entete()
 		aff_menu()
-		print(warning)
+		if warning!="" : print(warning)
 		choix=0
 		while choix==0 :
 			try:
