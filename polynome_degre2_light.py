@@ -124,6 +124,7 @@ def exec_menu(i):
         print("-----------------------------")         
         print("Extremum : ")
         print("   (",optimiser(-b/(2*a),r=4),";",optimiser(e,r=4),")")
+        print("")
     elif i == 5:
         pass
         # Kevin
