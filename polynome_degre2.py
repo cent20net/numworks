@@ -4,14 +4,8 @@
 # Auteurs : Arthur Jacquin, Kevin Fedyna, Vincent Robert.
 
 from math import sqrt
-<<<<<<< .mine
-import sys
-
-||||||| .r53
-=======
 import sys # Supprimer ceci pour tester sur la numworks
 
->>>>>>> .r61
 a,b,c="a","b","c"
 
 #TODO :  Objectif : On réduit le nombre de f° en passant de 19 à 10 max car chaque fois consomme 136 octet min...
@@ -277,14 +271,8 @@ def exec_menu_5():
             fact = fact+"+{}i)".format(y)
         print(fact)
 
-<<<<<<< .mine
-def menu_input(var_dem,pdif0 = 0,pint = 0,inf = "rien",sup = "rien"):
-||||||| .r53
-def menu_input(var_dem,pdif0 = 0,pint = 0,pbinf = "none",pbsup = "none"):
-=======
  # Je suis sur qu'on peut réduire encore      
 def menu_input(var_dem,pdif0 = 0,pint = 0,inf = "rien",sup = "rien"):
->>>>>>> .r61
     global choix
     if var_dem != "rien": print("{} =".format(str(var_dem)))
     try: choix = float(input())
@@ -315,18 +303,6 @@ aff_menu_0()
 def_trinome()
 menu()
 
-<<<<<<< .mine
-s=0
-for name in dir():
-    print("nom var = "+name)
-    print(globals()[name])
-    print(sys.getsizeof(globals()[name]))
-    s=s+sys.getsizeof(globals()[name])
-    print(s)
-  
-||||||| .r53
-
-=======
 s=0 # Supprimer ceci pour tester sur la numworks
 for name in dir():
     print("nom var = "+name)
@@ -335,5 +311,4 @@ for name in dir():
     s=s+sys.getsizeof(globals()[name])  # del
     print(s)  # del
   
->>>>>>> .r61
     
