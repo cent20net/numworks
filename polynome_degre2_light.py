@@ -98,16 +98,16 @@ def exec_menu(i):
 		def_calc_trinome()
 	elif i == 2:
 		pass
-		# kevin
+		# Arthur
 	elif i == 3:
 		pass
-		# kevin
+		# Arthur
 	elif i == 4:
 		pass
-		# kevin
+		# Vincent
 	elif i == 5:
 		pass
-		# kevin
+		# Kevin
 	elif i == 6:
 		pass
 
