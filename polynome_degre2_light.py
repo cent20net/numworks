@@ -33,7 +33,8 @@ def aff_entete():
     else:
         print("P(x)={}{}{} (=0)".format(
             optimiser(a, ap="x^2", r=4),
-            optimiser(b, p=1, ap="x", r=4, naf=1), optimiser(c, p=1, r=4, naf=1)))
+            optimiser(b, p=1, ap="x", r=4, naf=1), 
+            optimiser(c, p=1, r=4, naf=1)))
         print("")
 
 
@@ -107,31 +108,32 @@ def exec_menu(i):
         # Vincent
         aff_entete()
         print("-----------------------------")
-        if d<=0:
+        if d <= 0:
             print("  x |        -b/(2a)        |")
             print("-----------------------------")
-            if a>0:
+            if a > 0:
                 print("P(x)|     +     m     +     |")
             else:
                 print("P(x)|     -     M     -     |")
         else:
             print("  x |    x1  -b/(2a)  x2    |")
             print("-----------------------------")
-            if a>0:
+            if a > 0:
                 print("P(x)|  +  0  -  m  -  0  +  |")
             else:
                 print("P(x)|  -  0  +  M  +  0  -  |")
-        print("-----------------------------")         
+        print("-----------------------------")
         print("Extremum : ")
-        print("   (",optimiser(-b/(2*a),r=4),";",optimiser(e,r=4),")")
+        print("   (", optimiser(-b/(2*a), r=4), ";", optimiser(e, r=4), ")")
+        print("")
         print("")
     elif i == 5:
         pass
         # Kevin
     elif i == 6:
-        pass 
+        pass
     if i != 6 and i != 1:
-       input()
+        input()
 
 
 def optimiser(v, av="", ap="", p=0, r=8, naf=0, br=0):
