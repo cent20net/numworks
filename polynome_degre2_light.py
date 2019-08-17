@@ -31,9 +31,7 @@ def aff_entete():
   if a == 0:
     print("P(x)=ax^2+bx+c (=0)")
   else:
-    print("P(x)={}{}{} (=0)".format(
-      optimiser(a, ap="x^2", r=4),
-      optimiser(b, p=1, ap="x", r=4, naf=1), optimiser(c, p=1, r=4, naf=1)))
+    print("P(x)={}{}{} (=0)".format(optimiser(a, ap="x^2", r=4),optimiser(b, p=1, ap="x", r=4, naf=1), optimiser(c, p=1, r=4, naf=1)))
     print("")
 
 
@@ -54,34 +52,25 @@ def aff_menu():
     print("   z1= {} + {} i".format(x, y))
     print("   z2= {} - {} i".format(x, y))
   elif d > 0:
-    x1 = optimiser(min(x + y, x - y))
-    x2 = optimiser(max(x - y, x + y))
     print("3. Racines reelles distinctes : 2 ")
-    print("   x1= {}".format(x1))
-    print("   x2= {}".format(x2))
+    print("   x1= {}".format(optimiser(x-abs(y))))
+    print("   x2= {}".format(optimiser(x+abs(y))))
   elif d == 0:
     print("3. Racine reelle double : 1 ")
-    print("   x1=x2= {}".format(x))
+    print("   x1=x2= {}".format(optimiser(x)))
   # Choix 4
   if d < 0:
-    if a < 0:
-      print("4. Signe : -", end=" ")
-    else:
-      print("4. Signe : +", end=" ")
+    if a < 0: signe4 = "-"
+    else: signe4 = "+"
   elif d == 0:
-    if a < 0:
-      print("4. Signe : -0-", end=" ")
-    else:
-      print("4. Signe : +0+", end=" ")
+    if a < 0: signe4 = "-0-"
+    else: signe4 = "+0+"
   else:
-    if a < 0:
-      print("4. Signe : -+-", end=" ")
-    else:
-      print("4. Signe : +-+", end=" ")
-  if a < 0:
-    print(", extremum : M")
-  else:
-    print(", extremum : m")
+    if a < 0: signe4 = "-+-"
+    else: signe4 = "+-+"
+  if a < 0: extremum4 = "M"
+  else: extremum4 = "m"
+  print("4. Signe : {}, {} = {}".format(signe4,extremum4,c-(b**2)/(4*a)))
   # Choix 5
   if d < 0:
     print("5. Factorisation dans les complexes")
@@ -98,11 +87,87 @@ def exec_menu(i):
     aff_entete()
     def_calc_trinome()
   elif i == 2:
-    pass
     # Arthur
+    aff_entete()
+    print("2. Calcul du discriminant :")
+    print("")
+    print("d = b^2 + 4*a*c")
+    print("  = {}^2 + 4*{}*{}".format(optimiser(b,par=1),optimiser(a,par=1),optimiser(c,par=1)))
+    if b == 0 and c != 0:
+        print(optimiser(4*a*c,av="  = "))
+    else:
+        print("  = {}{}".format(optimiser(b**2),optimiser(4*a*c,p=1,naf=1)))
+        if c != 0:
+            print(optimiser(d,av="  = "))
+    print("")
+    print(optimiser(d,av="d = "), end=" ")
+    if d == 0: print("")
+    elif d < 0: print("< 0")
+    elif d > 0: print("> 0")
+    if b != 0 and c != 0: print("")
+    pass
   elif i == 3:
-    pass
     # Arthur
+    aff_entete()
+    print("3. Calcul des racines :")
+    print("")
+    if d < 0:
+        print("d < 0 donc il existe")
+        print("2 racines complexes conjugees")
+        print("telles que :")
+        print("")
+        print("z1 = -b/2a + %(|d|)/2a i")
+        print("z2 = -b/2a - %(|d|)/2a i")
+    elif d == 0:
+        print("d = 0 donc il existe")
+        print("1 racine reelle double")
+        print("telle que :")
+        print("")
+        print("x1 = x2 = -b/2a")
+        print("")
+    elif d > 0:
+        print("d > 0 donc il existe")
+        print("2 racines reelles distinctes")
+        print("telles que :")
+        print("")
+        if a > 0:
+            print("x1 = (-b-%(d))/(2a)")
+            print("x2 = (-b+%(d))/(2a)")
+        else:
+            print("x1 = (-b+%(d))/(2a)")
+            print("x2 = (-b-%(d))/(2a)")
+    input()
+    aff_entete()
+    print("3. Calcul des racines :")
+    print("")
+    if d < 0:
+        print("z1 = -b/2a + %(|d|)/2a i")
+        print("   = (-{0})/(2*{1}) + %(|{2}|)/(2*{1}) i".format(optimiser(b,par=1,r=4),optimiser(a,par=1,r=4),optimiser(d,r=4)))
+        print("   = {} + {} i".format(x,optimiser(y,par=1)))
+        print("z2 = -b/2a - %(|d|)/2a i")
+        print("   = (-{0})/(2*{1}) - %(|{2}|)/(2*{1}) i".format(optimiser(b,par=1,r=4),optimiser(a,par=1,r=4),optimiser(d,r=4)))
+        print("   = {} - {} i".format(x,optimiser(y,par=1)))
+    elif d == 0:
+        print("x1 = x2 = -b/2a")
+        print("   = (-{})/(2*{})".format(optimiser(b,par=1,r=5),optimiser(a,par=1,r=5)))
+        print(optimiser(x,av="   = "))
+        for i in range(3): print("")
+    elif d > 0:
+        if a > 0:
+            print("x1 = (-b-%(d))/(2a)")
+            print("   = (-{}-%({}))/(2*{})".format(optimiser(b,par=1,r=4),optimiser(d,r=4),optimiser(a,par=1,r=4)))
+            print(optimiser(x-abs(y),av="   = "))
+            print("x2 = (-b+%(d))/(2a)")
+            print("   = (-{}+%({}))/(2*{})".format(optimiser(b,par=1,r=4),optimiser(d,r=4),optimiser(a,par=1,r=4)))
+            print(optimiser(x+abs(y),av="   = "))
+        else:
+            print("x1 = (-b+%(d))/(2a)")
+            print("   = (-{}+%({}))/(2*{})".format(optimiser(b,par=1,r=4),optimiser(d,r=4),optimiser(a,par=1,r=4)))
+            print(optimiser(x+abs(y),av="   = "))
+            print("x2 = (-b-%(d))/(2a)")
+            print("   = (-{}-%({}))/(2*{})".format(optimiser(b,par=1,r=4),optimiser(d,r=4),optimiser(a,par=1,r=4)))
+            print(optimiser(x-abs(y),av="   = "))
+    pass
   elif i == 4:
     # Vincent
     aff_entete()
@@ -131,11 +196,11 @@ def exec_menu(i):
     # Kevin
   elif i == 6:
     pass
-  if i != 6 and i != 1:
+  if i != 1 or i != 6:
     input()
 
 
-def optimiser(v, av="", ap="", p=0, r=8, naf=0, br=0):
+def optimiser(v, av="", ap="", p=0, r=8, naf=0, br=0, par=0):
   # valeur, str avant, str apres, afficher signe, arrondi,
   # ne pas afficher un 0, sauter v ligne
   if br != 0:
@@ -148,10 +213,12 @@ def optimiser(v, av="", ap="", p=0, r=8, naf=0, br=0):
       v = int(v)
     else:
       v = round(v, r)
-    if av == "" and ap == "" and p == 0:
+    if av == "" and ap == "" and p == 0 and par == 0:
       return v
     if p == 1 and v > 0:
       v = "+" + str(v)
+    if par == 1 and v < 0:
+        v = "({})".format(v)
     return str(av) + str(v) + str(ap)
 
 
