@@ -204,7 +204,19 @@ def exec_menu_4():
  P("")
 
 def exec_menu_5():
- pass
+ if d == 0:
+  P("P(x) = a(x-(-b/2a))^2")
+  if x1 != 0:
+   P(Op(-x1, f"P(x) = {a}(x", ")^2", p=1))
+  else:
+   P(f"P(x) = {a}x^2")
+ elif d > 0:
+  P("P(x) = a(x-x1)(x-x2)")
+  P(Op(-x2,Op(-x1,f"P(x) = {a}(x",")(x",p=1,naf=2,r=4),")",p=1,naf=2,r=4))
+ else:
+  P("P(z) = a(z-z1)(z-z2)\nAvec:")
+  P(Op(-x,"(z-z1) = (z",Op(y,ap="i",r=4,naf=1,p=1)+")",r=4,naf=2,p=1))
+  P(Op(-x,"(z-z2) = (z",Op(-y,ap="i",r=4,naf=1,p=1)+")",r=4,naf=2,p=1))
 
 def exec_menu_6():
  exit()
