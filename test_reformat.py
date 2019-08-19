@@ -202,6 +202,7 @@ def exec_menu_4():
  P("  (", Op(-b / (2 * a), r=4), ";", Op(e, r=4), ")")
  P("")
  P("")
+ I()
 
 def exec_menu_5():
  if d == 0:
@@ -217,6 +218,7 @@ def exec_menu_5():
   P("P(z) = a(z-z1)(z-z2)\nAvec:")
   P(Op(-x,"(z-z1) = (z",Op(y,ap="i",r=4,naf=1,p=1)+")",r=4,naf=2,p=1))
   P(Op(-x,"(z-z2) = (z",Op(-y,ap="i",r=4,naf=1,p=1)+")",r=4,naf=2,p=1))
+  I()
 
 def exec_menu_6():
  exit()
