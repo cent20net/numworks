@@ -88,8 +88,26 @@ def exec_menu(i):
  if i == 1:
   a, b, c = 0, 0, 0
   def_calc_trinome()
+ if i == 6:
+  quit()
+
+def exec_menu_1():
  pass
 
+def exec_menu_2():
+ pass
+
+def exec_menu_3():
+ pass
+
+def exec_menu_4():
+ pass
+
+def exec_menu_5():
+ pass
+
+def exec_menu_6():
+ pass
 
 def optimiser(v, av="", ap="", p=0, r=8, naf=0, br=0, par=0):
  # valeur, str avant, str apres, afficher signe, arrondi,
@@ -130,7 +148,7 @@ def menu(warning=""):
   except:
    choix = 0
    menu(">> saisir un entier entre 1 et 6 !")
- exec_menu(choix)
+ eval("aff_menu_{}()".format(choix))
  if choix != 6:
   menu()
 
