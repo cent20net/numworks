@@ -4,14 +4,16 @@
 from math import sqrt
 
 a, b, c = 0, 0, 0
+P = print
+I = input
 
 
 def def_calc_trinome():
  global a, b, c, d, e, nb, x, y, x1, x2
  while a == 0:
-  a = optimiser(float(input('a = ')))
- b = optimiser(float(input('b = ')))
- c = optimiser(float(input('c = ')))
+  a = optimiser(float(I('a = ')))
+ b = optimiser(float(I('b = ')))
+ c = optimiser(float(I('c = ')))
  d = optimiser(float(b**2 - 4 * a * c))
  e = optimiser(float(a * (-b / (2 * a))**2 + b * (-b / (2 * a)) + c))
  if d == 0:
@@ -26,60 +28,60 @@ def def_calc_trinome():
 
 def aff_entete():
  optimiser(9, br=1)
- print("Polynome (equation) de degre 2")
+ P("Polynome (equation) de degre 2")
  if a == 0:
-  print("P(x)=ax^2+bx+c (=0)")
+  P("P(x)=ax^2+bx+c (=0)")
  else:
-  print("P(x)={}{}{} (=0)".format(
+  P("P(x)={}{}{} (=0)".format(
    optimiser(a, ap="x^2", r=4),
    optimiser(b, p=1, ap="x", r=4, naf=1), optimiser(c, p=1, r=4, naf=1)))
-  print("")
+  P("")
 
 
 def aff_menu():
- print("1. Changer les valeurs a,b,c")
+ P("1. Changer les valeurs a,b,c")
  if d < 0:
   s = "< 0"
  elif d > 0:
   s = "> 0"
  elif d == 0:
   s = ""
- print("2. Discriminant = {} {} ".format(d, s))
+ P("2. Discriminant = {} {} ".format(d, s))
  if d < 0:
-  print("3. Racines complexes conjuguees : 2 ")
-  print("   z1= {} + {} i".format(x, y))
-  print("   z2= {} - {} i".format(x, y))
+  P("3. Racines complexes conjuguees : 2 ")
+  P("   z1= {} + {} i".format(x, y))
+  P("   z2= {} - {} i".format(x, y))
  elif d > 0:
-  print("3. Racines reelles distinctes : 2 ")
-  print("   x1= {}".format(x1))
-  print("   x2= {}".format(x2))
+  P("3. Racines reelles distinctes : 2 ")
+  P("   x1= {}".format(x1))
+  P("   x2= {}".format(x2))
  elif d == 0:
-  print("3. Racine reelle double : 1 ")
-  print("   x1=x2= {}".format(x))
+  P("3. Racine reelle double : 1 ")
+  P("   x1=x2= {}".format(x))
  if d < 0:
   if a < 0:
-   print("4. Signe : -", end=" ")
+   P("4. Signe : -", end=" ")
   else:
-   print("4. Signe : +", end=" ")
+   P("4. Signe : +", end=" ")
  elif d == 0:
   if a < 0:
-   print("4. Signe : -0-", end=" ")
+   P("4. Signe : -0-", end=" ")
   else:
-   print("4. Signe : +0+", end=" ")
+   P("4. Signe : +0+", end=" ")
  else:
   if a < 0:
-   print("4. Signe : -+-", end=" ")
+   P("4. Signe : -+-", end=" ")
   else:
-   print("4. Signe : +-+", end=" ")
+   P("4. Signe : +-+", end=" ")
  if a < 0:
-  print(", extremum : M")
+  P(", extremum : M")
  else:
-  print(", extremum : m")
+  P(", extremum : m")
  if d < 0:
-  print("5. Factorisation dans les complexes")
+  P("5. Factorisation dans les complexes")
  elif d >= 0:
-  print("5. Factorisation dans les reels")
- print("6. Quitter")
+  P("5. Factorisation dans les reels")
+ P("6. Quitter")
 
 
 def exec_menu(i):
@@ -115,7 +117,7 @@ def optimiser(v, av="", ap="", p=0, r=8, naf=0, br=0, par=0):
  # parentheses autour de v
  if br != 0:
   for i in range(v):
-   print("")
+   P("")
  elif br == 0:
   if v == 0 and naf == 1:
    return ""
@@ -140,15 +142,15 @@ def menu(warning=""):
  aff_entete()
  aff_menu()
  if warning != "":
-  print(warning)
+  P(warning)
  choix = 0
  while choix == 0:
   try:
-   choix = int(input())
+   choix = int(I())
   except:
    choix = 0
    menu(">> saisir un entier entre 1 et 6 !")
- eval("aff_menu_{}()".format(choix))
+ eval("exec_menu_{}()".format(int(choix)))
  if choix != 6:
   menu()
 
