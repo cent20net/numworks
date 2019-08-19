@@ -8,6 +8,8 @@ import sys
 
 a, b, c = 0, 0, 0
 
+signe4 = "-"
+
 
 def def_calc_trinome():
     global a, b, c, d, e, nb, x, y, x1, x2
