@@ -1,314 +1,280 @@
-# En cours de création. livraison mi aout 2018
-# Ce script sera expliqué et commenté en détail sur le site internet https://nsi.xyz/ (URL exacte à préciser après publication)
-# Transfert automatique vers la NumWorks depuis https://workshop.numworks.com/python/cent20/polynome_degre2
+# computing. ready august 2019
+# https://nsi.xyz/
+# https://workshop.numworks.com/python/cent20/polynome_degre2
 # Auteurs : Arthur Jacquin, Kevin Fedyna, Vincent Robert.
 
 from math import sqrt
-import sys # Supprimer ceci pour tester sur la numworks
+import sys
 
-a,b,c="a","b","c"
+a, b, c = 0, 0, 0
 
-#TODO :  Objectif : On réduit le nombre de f° en passant de 19 à 10 max car chaque fois consomme 136 octet min...
-#TODO :  Si le compilateur réserve également 136 octet par chaine de charactère on est mal ... Surtout si il comprend pas que c'est la même chaine.
-#TODO : fusionner les 4 premières fonctions dans une f° def_calc_trinome()
 
-def def_trinome():
-    global a,b,c
-    a=0
-    while a==0 :
-        a=float(input('a = '))
-    b=float(input('b = '))
-    c=float(input('c = '))
-    a=optimiser(a)
-    b=optimiser(b)
-    c=optimiser(c)
-    calc_delta()
-    calc_nb_sol()
-    def_solutions()
-    
-def calc_delta():
-    global d
-    d=float(b**2-4*a*c)
-    d=optimiser(d) 
-
-def calc_nb_sol():
-    global nb
-    if d==0:
-        nb=1
+def def_calc_trinome():
+    global a, b, c, d, e, nb, x, y, x1, x2
+    while a == 0:
+        a = optimiser(float(input('a = ')))
+    b = optimiser(float(input('b = ')))
+    c = optimiser(float(input('c = ')))
+    d = optimiser(float(b**2 - 4 * a * c))
+    e = optimiser(float(a * (-b / (2 * a))**2 + b * (-b / (2 * a)) + c))
+    if d == 0:
+        nb = 1
     else:
-        nb=2
-        # Spoil Tale S
-        
-def def_solutions():
-    x=round((-b)/(2*a),8)
-    y=round((sqrt(abs(d)))/(2*a),8)
-    return x,y
+        nb = 2
+    x = optimiser((-b) / (2 * a))
+    y = optimiser((sqrt(abs(d))) / (2 * a))
+    x1 = optimiser(min(x + y, x - y))
+    x2 = optimiser(max(x - y, x + y))
 
-#TODO : fusionner les f° qui affichent le menu (sauf aff_menu_0), les aff_menu dans une unique f° aff_menu() 
 
-def aff_menu_0():
-    print("Polynôme (équation) de degré 2")
-    if a!="a":
-        exp_poly = "P(x)={}x^2".format(a)
-        if b >= 0:
-            exp_poly = exp_poly+"+{}x".format(b)
-        if b<0:
-            exp_poly = exp_poly+"{}x".format(b)
-        if c >= 0:
-            exp_poly = exp_poly+"+{}".format(c)
-        if c<0:
-            exp_poly = exp_poly+"{}".format(c)
-        print(exp_poly)
+def aff_entete():
+    optimiser(9, br=1)
+    print("Polynome (equation) de degre 2")
+    if a == 0:
+        print("P(x)=ax^2+bx+c (=0)")
     else:
-        print("P(x)={}x^2+{}x+{} (=0)".format(a,b,c))
-    print("")  
+        print("P(x)={}{}{} (=0)".format(
+                optimiser(a, ap="x^2", r=4),
+                optimiser(b, p=1, ap="x", r=4, naf=1), optimiser(c, p=1, r=4, naf=1)))
+        print("")
 
-def aff_menu_1():
-    menu_1 = "1. Changer les valeurs a,b,c"
-    print(menu_1)
-    # on pourrait réduire ces deux lignes mais on perd un interêt pédagogique > si on va réduire, obligé !
 
-def aff_menu_2():
-    global d
-    if d<0:
-        signe = "<0"
-    elif d>0:
-        signe = ">0"
-    elif d==0:
-        signe = ""
-    menu_2 = "2. Discriminant = {} {} ".format(d,signe)
-    print(menu_2)
-    
-def aff_menu_3():
-    x,y = def_solutions()
-    if d<0:
-        print("3. Racines complexes conjuguées : 2 ")
-        print("   z1= {} + {} i".format(x,y))
-        print("   z2= {} - {} i".format(x,y))
-        # Spoil Tale S
-    elif d>0:
-        x1=min(x+y,x-y)
-        x2=max(x-y,x+y)
-        if x1 == int(x1): x1 = int(x1)
-        if x2 == int(x2): x2 = int(x2)
-        print("3. Racines réelles distinctes : 2 ")
+def aff_menu():
+    # Choix 1
+    print("1. Changer les valeurs a,b,c")
+    # Choix 2
+    if d < 0:
+        s = "< 0"
+    elif d > 0:
+        s = "> 0"
+    elif d == 0:
+        s = ""
+    print("2. Discriminant = {} {} ".format(d, s))
+    # Choix 3
+    if d < 0:
+        print("3. Racines complexes conjuguees : 2 ")
+        print("   z1= {} + {} i".format(x, y))
+        print("   z2= {} - {} i".format(x, y))
+    elif d > 0:
+        print("3. Racines reelles distinctes : 2 ")
         print("   x1= {}".format(x1))
         print("   x2= {}".format(x2))
-    elif d==0:
-        if x == int(x): x = int(x)
-        print("3. Racine réelle double : 1 ")
+    elif d == 0:
+        print("3. Racine reelle double : 1 ")
         print("   x1=x2= {}".format(x))
-
-def aff_menu_4():
-    menu_4 = "4. Signe "
-    if d<0:
-        if a<0:
-            menu_4 = menu_4+"(-)"
+    # Choix 4
+    if d < 0:
+        if a < 0:
+            print("4. Signe : -", end=" ")
         else:
-            menu_4 = menu_4+"(+)"
-    elif d==0:
-        if a<0:
-            menu_4 = menu_4+"(-0-)"
+            print("4. Signe : +", end=" ")
+    elif d == 0:
+        if a < 0:
+            print("4. Signe : -0-", end=" ")
         else:
-            menu_4 = menu_4+"(+0+)"
+            print("4. Signe : +0+", end=" ")
     else:
-        if a<0:
-            menu_4 = menu_4+"(-+-)"
+        if a < 0:
+            print("4. Signe : -+-", end=" ")
         else:
-            menu_4 = menu_4+"(+-+)"
-    if a<0:
-        menu_4 = menu_4+", extremum (M)"
+            print("4. Signe : +-+", end=" ")
+    if a < 0:
+        print(", extremum : M")
     else:
-        menu_4 = menu_4+", extremum (m)"
-    # On insère pas les coordonnées ? (arthur) > Si à ajouter mais dans exec_menu4 ! (vincent)
-    print(menu_4)
-
-def aff_menu_5():
-    if d<0:
-        menu_5="5. Factorisation dans les complexes"
-        # Spoil Tale S
-    elif d>=0:
-        menu_5="5. Factorisation dans les réels"
-    print(menu_5)
-    
-def aff_menu_6():
+        print(", extremum : m")
+    # Choix 5
+    if d < 0:
+        print("5. Factorisation dans les complexes")
+    elif d >= 0:
+        print("5. Factorisation dans les reels")
+        # Choix 6
     print("6. Quitter")
-    
-    
-def exec_menu_1():
-    aff_menu_0()
-    def_trinome()
-    # fini ! 
-    
-#TODO : on doit garder les exec_menu_
-def exec_menu_2():
-    aff_menu_0()
-    print("Calcul du discriminant:")
-    print("Δ = b^2-4ac")
-    for i in range(3):
-        delta = "Δ = "
-        if i==0:
-            if b<0:
-                delta = delta+"({})^2-4*"
-            else:
-                delta = delta+"{}^2-4*"
-            if a<0:
-                delta = delta+"({})*"
-            else:
-                delta = delta+"{}*"
-            if c<0:
-                delta = delta+"({})"
-            else:
-                delta = delta+"{}"
-            print(delta.format(b,a,c))
-        elif i==1:
-            calcDis = 4*a*c
-            if b<0:
-                delta = delta+"({})^2"
-            else:
-                delta = delta+"{}^2"
-            if calcDis<0:
-                delta = delta+"+{}"
-            else:
-                delta = delta+"{}"
-            calcDis = -1*calcDis
-            print(delta.format(b,calcDis))
-        else:
-            calcDis = b**2-4*a*c
-            print(delta+str(calcDis))
 
-def exec_menu_3():
-    aff_menu_0()
-    print("Calcul des racines:")
-    x,y = def_solutions()
-    if d<0:
-        print("z1 = -b/2a + √|Δ|/2a i")
-        print("z1 = {}/2*{} + √{}/2*{} i".format(-b,a,-d,a))
-        print("z1 = {}/{} + √{}/{} i".format(-b,2*a,-d,2*a))
-        print("z1 = {} + {} i".format(x,y))
-        print("z2 = -b/2a - √|Δ|/2a i")
-        print("z2 = {}/{} - √{}/{} i".format(-b,2*a,-d,2*a))
-        print("z2 = {} - {} i".format(x,y))
-    else:
-        print("x1 = (-b+√Δ)/2a")
-        print("x1 = ({}+√{})/2*{}".format(-b,d,a))
-        if d==0:
-            print("x1 = {}/{}".format(-b,2*a))
-        else:
-            print("x1 = ({}+√{})/{}".format(-b,d,2*a))
-        print("x1 = {}".format(x+y))
-        print("x2 = (-b-√Δ)/2a")
-        print("x2 = ({}-√{})/2*{}".format(-b,d,a))
-        print("x2 = {}".format(x-y))
 
-def exec_menu_4():
-    aff_menu_0()
-    # kevin ???
-
-def exec_menu_5():
-    aff_menu_0()
-    print("Factorisation:")
-    x,y = def_solutions()
-    if x+y==int(x+y):
-        x1 = int(x+y)
-    else:
-        x1 = x+y
-    if x-y==int(x-y):
-        x2 = int(x-y)
-    else:
-        x2 = x-y
-    if d==0:
-        print("P(x) = a(x-(-b/2a))^2")
-        print("P(x) = {}(x-({}/2*{}))^2".format(a,-b,a))
-        if x1<0:
-            print("P(x) = {}(x+{})^2".format(a,-x1))
-        elif x1>0:
-            print("P(x) = {}(x{})^2".format(a,-x1))
+def exec_menu(i):
+    global a, b, c, d, x, y
+    aff_entete()
+    if i == 1:
+        a, b, c = 0, 0, 0
+        def_calc_trinome()
+    elif i == 2:
+        # Arthur
+        print("2. Calcul du discriminant :")
+        print("")
+        print("d = b^2 + 4*a*c")
+        print("  = {}^2 + 4*{}*{}".format(optimiser(b,par=1),optimiser(a,par=1),optimiser(c,par=1)))
+        if b == 0 and c != 0:
+            print(optimiser(4*a*c,av="  = "))
         else:
-            print("P(x) = {}x^2".format(a))
-    elif d>0:
-        print("P(x) = a(x-x1)(x-x2)")
-        print("Avec :")
-        print("a = {}".format(a))
-        fact = "(x-x1) = (x"
-        if x1<0:
-            fact = fact+"+{})".format(-x1)
-        elif x1>0:
-            fact = fact+"{})".format(-x1)
+            print("  = {}{}".format(optimiser(b**2),optimiser(4*a*c,p=1,naf=1)))
+            if c != 0:
+                print(optimiser(d,av="  = "))
+        print("")
+        print(optimiser(d,av="d = "), end=" ")
+        if d == 0:
+            print("")
+        elif d < 0:
+            print("< 0")
+        elif d > 0:
+            print("> 0")
+        if b != 0 and c != 0:
+            print("")
+    elif i == 3:
+        # Arthur
+        print("3. Calcul des racines :")
+        print("")
+        if d < 0:
+            print("d < 0 donc il existe")
+            print("2 racines complexes conjugees")
+            print("telles que :")
+            print("")
+            print("z1 = -b/2a + %(|d|)/2a i")
+            print("z2 = -b/2a - %(|d|)/2a i")
+        elif d == 0:
+            print("d = 0 donc il existe")
+            print("1 racine reelle double")
+            print("telle que :")
+            print("")
+            print("x1 = x2 = -b/2a")
+            print("")
+        elif d > 0:
+            print("d > 0 donc il existe")
+            print("2 racines reelles distinctes")
+            print("telles que :")
+            print("")
+            if a > 0:
+                print("x1 = (-b-%(d))/(2a)")
+                print("x2 = (-b+%(d))/(2a)")
+            else:
+                print("x1 = (-b+%(d))/(2a)")
+                print("x2 = (-b-%(d))/(2a)")
+        input()
+        aff_entete()
+        print("3. Calcul des racines :")
+        print("")
+        if d < 0:
+            print("z1 = -b/2a + %(|d|)/2a i")
+            print("   = (-{0})/(2*{1}) + %(|{2}|)/(2*{1}) i".format(optimiser(b,par=1,r=4),optimiser(a,par=1,r=4),optimiser(d,r=4)))
+            print("   = {} + {} i".format(x,optimiser(y,par=1)))
+            print("z2 = -b/2a - %(|d|)/2a i")
+            print("   = (-{0})/(2*{1}) - %(|{2}|)/(2*{1}) i".format(optimiser(b,par=1,r=4),optimiser(a,par=1,r=4),optimiser(d,r=4)))
+            print("   = {} - {} i".format(x,optimiser(y,par=1)))
+        elif d == 0:
+            print("x1 = x2 = -b/2a")
+            print("   = (-{})/(2*{})".format(optimiser(b,par=1,r=5),optimiser(a,par=1,r=5)))
+            print(optimiser(x,av="   = "))
+            for i in range(3): print("")
+        elif d > 0:
+            if a > 0:
+                print("x1 = (-b-%(d))/(2a)")
+                print("   = (-{}-%({}))/(2*{})".format(optimiser(b,par=1,r=4),optimiser(d,r=4),optimiser(a,par=1,r=4)))
+                print(optimiser(x-abs(y),av="   = "))
+                print("x2 = (-b+%(d))/(2a)")
+                print("   = (-{}+%({}))/(2*{})".format(optimiser(b,par=1,r=4),optimiser(d,r=4),optimiser(a,par=1,r=4)))
+                print(optimiser(x+abs(y),av="   = "))
+            else:
+                print("x1 = (-b+%(d))/(2a)")
+                print("   = (-{}+%({}))/(2*{})".format(optimiser(b,par=1,r=4),optimiser(d,r=4),optimiser(a,par=1,r=4)))
+                print(optimiser(x+abs(y),av="   = "))
+                print("x2 = (-b-%(d))/(2a)")
+                print("   = (-{}-%({}))/(2*{})".format(optimiser(b,par=1,r=4),optimiser(d,r=4),optimiser(a,par=1,r=4)))
+                print(optimiser(x-abs(y),av="   = "))
+    elif i == 4:
+        # Vincent
+        print("-----------------------------")
+        if d <= 0:
+            print("  x |        -b/(2a)        |")
+            print("-----------------------------")
+            if a > 0:
+                print("P(x)|     +     m     +     |")
+            else:
+                print("P(x)|     -     M     -     |")
         else:
-            fact = fact+")"
-        print(fact)
-        fact = "(x-x2) = (x"
-        if x2<0:
-            fact = fact+"+{})".format(-x2)
-        elif x2>0:
-            fact = fact+"{})".format(-x2)
+            print("  x |    x1  -b/(2a)  x2    |")
+            print("-----------------------------")
+            if a > 0:
+                print("P(x)|  +  0  -  m  -  0  +  |")
+            else:
+                print("P(x)|  -  0  +  M  +  0  -  |")
+        print("-----------------------------")
+        print("Extremum : ")
+        print("   (", optimiser(-b / (2 * a), r=4), ";", optimiser(e, r=4), ")")
+        print("")
+        print("")
+    elif i == 5:
+        # Kevin
+        if d == 0:
+            print("P(x) = a(x-(-b/2a))^2")
+            if x1 != 0:
+                print(optimiser(-x1, "P(x) = {}(x".format(a), ")^2", p=1))
+            else:
+                print("P(x) = {}x^2".format(a))
+        elif d > 0:
+            print("P(x) = a(x-x1)(x-x2)")
+            print(optimiser(-x2,optimiser(-x1,"P(x) = {}(x".format(a),")(x",p=1,naf=2,r=4),")",p=1,naf=2,r=4))
         else:
-            fact = fact+")"
-        print(fact)
-    else:
-        print("P(x) = a(z-z1)(z-z2)")
-        print("Avec :")
-        print("a = {}".format(a))
-        fact = "(z-z1) = (z"
-        if x<0:
-            fact = fact+"+{}".format(-x)
-        elif x>0:
-            fact = fact+"{}".format(-x)
-        if y<0:
-            fact = fact+"+{}i)".format(-y)
-        elif y>0:
-            fact = fact+"{}i)".format(-y)
-        print(fact)
-        fact = "(z-z2) = (z"
-        if x<0:
-            fact = fact+"+{}".format(-x)
-        elif x>0:
-            fact = fact+"{}".format(-x)
-        if y<0:
-            fact = fact+"{}i)".format(y)
-        elif y>0:
-            fact = fact+"+{}i)".format(y)
-        print(fact)
+            print("P(z) = a(z-z1)(z-z2)\nAvec:")
+            print(optimiser(-x,"(z-z1) = (z",optimiser(y,ap="i",r=4,naf=1)+")",r=4,naf=2))
+            print(optimiser(-x,"(z-z2) = (z",optimiser(-y,ap="i",r=4,naf=1)+")",r=4,naf=2))
+    elif i == 6:
+        pass
+    if i != 6 and i != 1:
+        input()
 
- # Je suis sur qu'on peut réduire encore      
-def menu_input(var_dem,pdif0 = 0,pint = 0,inf = "rien",sup = "rien"):
-    global choix
-    if var_dem != "rien": print("{} =".format(str(var_dem)))
-    try: choix = float(input())
-    except:
-        print("Entrez un chiffre :")
-        menu_input(var_dem,pdif0,pint,inf,sup)    
-    if (inf != "rien" and choix < inf) or (sup != "rien" and choix > sup):
-        print("La valeur doit être un entier entre {} et {} :".format(inf,sup))
-        menu_input(var_dem,pdif0,pint,inf,sup)
-    elif (pint == 1 and int(choix) != choix):
-        print("La valeur doit être entière :")
-        menu_input(var_dem,pdif0,pint,inf,sup)
-    
-def optimiser(v):
-    if v == int(v): v = int(v)
-    return v
 
-def menu():
-    for i in range(7):
-        eval("aff_menu_{}()".format(i))
-    menu_input("rien",pint = 1,inf = 1,sup = 6)
-    if choix!=6:
-        eval("exec_menu_{}()".format(int(choix)))
-        if choix!=1: input()
+def optimiser(v, av="", ap="", p=0, r=8, naf=0, br=0, par=0):
+    # valeur, str avant, str apres, afficher signe, arrondi,
+    # ne pas afficher un 0 (1, 2 et 3: resultats differents), sauter v ligne
+    # parentheses autour de v
+    if br != 0:
+        for i in range(v):
+            print("")
+    elif br == 0:
+        if v == 0 and naf == 1:
+            return ""
+        if v == 0 and naf == 2:
+            return str(av) + str(ap)
+        if v == 0 and naf == 3:
+            return str(av)
+        if v == int(v):
+            v = int(v)
+        else:
+            v = round(v, r)
+        if av == "" and ap == "" and p == 0 and par == 0:
+            return v
+        if p == 1 and v > 0:
+            v = "+" + str(v)
+        if par == 1 and v < 0:
+            v = "({})".format(v)
+    return str(av) + str(v) + str(ap)
+
+
+def menu(warning=""):
+    aff_entete()
+    aff_menu()
+    if warning != "":
+        print(warning)
+    choix = 0
+    while choix == 0:
+        try:
+            choix = int(input())
+        except:
+            choix = 0
+            menu(">> saisir un entier entre 1 et 6 !")
+    exec_menu(choix)
+    if choix != 6:
         menu()
 
-aff_menu_0()
-def_trinome()
+
+optimiser(9, br=1)
+exec_menu(1)
 menu()
 
-s=0 # Supprimer ceci pour tester sur la numworks
+# Supprimer 7 lignes ci dessous pour tester sur la numworks
+s = 0
 for name in dir():
-    print("nom var = "+name)
+    print("nom var = " + name)
     print(globals()[name])
-    print(sys.getsizeof(globals()[name])) # del
-    s=s+sys.getsizeof(globals()[name])  # del
-    print(s)  # del
-  
-    
+    print(sys.getsizeof(globals()[name]))
+    s = s + sys.getsizeof(globals()[name])
+    print(s)
