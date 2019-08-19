@@ -8,6 +8,7 @@ import sys
 
 # O = optimiser
 P = print
+I = input
 
 a, b, c = 0, 0, 0
 
@@ -15,9 +16,9 @@ a, b, c = 0, 0, 0
 def def_calc_trinome():
     global a, b, c, d, e, nb, x, y, x1, x2
     while a == 0:
-        a = O(float(input('a = ')))
-    b = O(float(input('b = ')))
-    c = O(float(input('c = ')))
+        a = O(float(I('a = ')))
+    b = O(float(I('b = ')))
+    c = O(float(I('c = ')))
     d = O(float(b**2 - 4 * a * c))
     e = O(float(a * (-b / (2 * a))**2 + b * (-b / (2 * a)) + c))
     if d == 0:
@@ -36,7 +37,7 @@ def aff_entete():
     if a == 0:
         P("P(x)=ax^2+bx+c (=0)")
     else:
-        P("P(x)={}{}{} (=0)".format(O(a, ap="x^2", r=4),O(b, p=1, ap="x", r=4, naf=1),O(c, p=1, r=4, naf=1)))
+        P(f"P(x)={O(a, ap='x^2', r=4)}{O(b, p=1, ap='x', r=4, naf=1)}{O(c, p=1, r=4, naf=1)} (=0)")
         P("")
 
 
@@ -50,19 +51,19 @@ def aff_menu():
         s = "> 0"
     elif d == 0:
         s = ""
-    P("2. Discriminant = {} {} ".format(d, s))
+    P(f"2. Discriminant = {d} {s} ")
     # Choix 3
     if d < 0:
         P("3. Racines complexes conjuguees : 2 ")
-        P("   z1= {} + {} i".format(x, y))
-        P("   z2= {} - {} i".format(x, y))
+        P(f"   z1= {x} + {y} i")
+        P(f"   z2= {x} - {y} i")
     elif d > 0:
         P("3. Racines reelles distinctes : 2 ")
-        P("   x1= {}".format(x1))
-        P("   x2= {}".format(x2))
+        P(f"   x1= {x1}")
+        P(f"   x2= {x2}")
     elif d == 0:
         P("3. Racine reelle double : 1 ")
-        P("   x1=x2= {}".format(x))
+        P("   x1=x2= {x}")
     # Choix 4
     if d < 0:
         if a < 0:
@@ -103,11 +104,11 @@ def exec_menu(i):
         P("2. Calcul du discriminant :")
         P("")
         P("d = b^2 + 4*a*c")
-        P("  = {}^2 + 4*{}*{}".format(O(b,par=1),O(a,par=1),O(c,par=1)))
+        P(f"  = {O(b,par=1)}^2 + 4*{O(a,par=1)}*{O(c,par=1)}")
         if b == 0 and c != 0:
             P(O(4*a*c,av="  = "))
         else:
-            P("  = {}{}".format(O(b**2),O(4*a*c,p=1,naf=1)))
+            P(f"  = {O(b**2)}{O(4*a*c,p=1,naf=1)}")
             if c != 0:
                 P(O(d,av="  = "))
         P("")
@@ -149,36 +150,36 @@ def exec_menu(i):
             else:
                 P("x1 = (-b+sqrt(d))/(2a)")
                 P("x2 = (-b-sqrt(d))/(2a)")
-        input()
+        I()
         aff_entete()
         P("3. Calcul des racines :")
         P("")
         if d < 0:
             P("z1 = -b/2a + sqrt(|d|)/2a i")
-            P("   = (-{0})/(2*{1}) + sqrt(|{2}|)/(2*{1}) i".format(O(b,par=1,r=4),O(a,par=1,r=4),O(d,r=4)))
-            P("   = {} + {} i".format(x,O(y,par=1)))
+            P(f"   = (-{O(b,par=1,r=4)})/(2*{O(a,par=1,r=4)}) + sqrt(|{O(d,r=4)}|)/(2*{O(a,par=1,r=4)}) i")
+            P(f"   = {x} + {O(y,par=1)} i")
             P("z2 = -b/2a - sqrt(|d|)/2a i")
-            P("   = (-{0})/(2*{1}) - sqrt(|{2}|)/(2*{1}) i".format(O(b,par=1,r=4),O(a,par=1,r=4),O(d,r=4)))
-            P("   = {} - {} i".format(x,O(y,par=1)))
+            P(f"   = (-{O(b,par=1,r=4)})/(2*{O(a,par=1,r=4)}) - sqrt(|{O(d,r=4)}|)/(2*{O(a,par=1,r=4)}) i")
+            P(f"   = {x} - {O(y,par=1)} i")
         elif d == 0:
             P("x1 = x2 = -b/2a")
-            P("   = (-{})/(2*{})".format(O(b,par=1,r=5),O(a,par=1,r=5)))
+            P(f"   = (-{O(b,par=1,r=5)})/(2*{O(a,par=1,r=5)})")
             P(O(x,av="   = "))
             for i in range(3): P("")
         elif d > 0:
             if a > 0:
                 P("x1 = (-b-sqrt(d))/(2a)")
-                P("   = (-{}-sqrt({}))/(2*{})".format(O(b,par=1,r=4),O(d,r=4),O(a,par=1,r=4)))
+                P(f"   = (-{O(b,par=1,r=4)}-sqrt({O(d,r=4)}))/(2*{O(a,par=1,r=4)})")
                 P(O(x-abs(y),av="   = "))
                 P("x2 = (-b+sqrt(d))/(2a)")
-                P("   = (-{}+sqrt({}))/(2*{})".format(O(b,par=1,r=4),O(d,r=4),O(a,par=1,r=4)))
+                P(f"   = (-{O(b,par=1,r=4)}+sqrt({O(d,r=4)}))/(2*{O(a,par=1,r=4)})")
                 P(O(x+abs(y),av="   = "))
             else:
                 P("x1 = (-b+sqrt(d))/(2a)")
-                P("   = (-{}+sqrt({}))/(2*{})".format(O(b,par=1,r=4),O(d,r=4),O(a,par=1,r=4)))
+                P(f"   = (-{O(b,par=1,r=4)}+sqrt({O(d,r=4)}))/(2*{O(a,par=1,r=4)})")
                 P(O(x+abs(y),av="   = "))
                 P("x2 = (-b-sqrt(d))/(2a)")
-                P("   = (-{}-sqrt({}))/(2*{})".format(O(b,par=1,r=4),O(d,r=4),O(a,par=1,r=4)))
+                P(f"   = (-{O(b,par=1,r=4)}-sqrt({O(d,r=4)}))/(2*{O(a,par=1,r=4)})")
                 P(O(x-abs(y),av="   = "))
     elif i == 4:
         # Vincent
@@ -207,12 +208,12 @@ def exec_menu(i):
         if d == 0:
             P("P(x) = a(x-(-b/2a))^2")
             if x1 != 0:
-                P(O(-x1, "P(x) = {}(x".format(a), ")^2", p=1))
+                P(O(-x1, f"P(x) = {a}(x", ")^2", p=1))
             else:
-                P("P(x) = {}x^2".format(a))
+                P(f"P(x) = {a}x^2")
         elif d > 0:
             P("P(x) = a(x-x1)(x-x2)")
-            P(O(-x2,O(-x1,"P(x) = {}(x".format(a),")(x",p=1,naf=2,r=4),")",p=1,naf=2,r=4))
+            P(O(-x2,O(-x1,f"P(x) = {a}(x",")(x",p=1,naf=2,r=4),")",p=1,naf=2,r=4))
         else:
             P("P(z) = a(z-z1)(z-z2)\nAvec:")
             P(O(-x,"(z-z1) = (z",O(y,ap="i",r=4,naf=1,p=1)+")",r=4,naf=2,p=1))
@@ -220,7 +221,7 @@ def exec_menu(i):
     elif i == 6:
         pass
     if i != 6 and i != 1:
-        input()
+        I()
 
 
 def O(v, av="", ap="", p=0, r=8, naf=0, br=0, par=0):
@@ -246,7 +247,7 @@ def O(v, av="", ap="", p=0, r=8, naf=0, br=0, par=0):
         if p == 1 and v > 0:
             v = "+" + str(v)
         if par == 1 and v < 0:
-            v = "({})".format(v)
+            v = f"({v})"
     return str(av) + str(v) + str(ap)
 
 
@@ -258,7 +259,7 @@ def menu(warning=""):
     choix = 0
     while choix == 0:
         try:
-            choix = int(input())
+            choix = int(I())
         except:
             choix = 0
             menu(">> saisir un entier entre 1 et 6 !")
