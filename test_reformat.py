@@ -125,21 +125,21 @@ def exec_menu_3():
  P("3. Calcul des racines :")
  P("")
  if d < 0:
-  P("d < 0 d Opnc il existe")
-  P("2 racines c Opmplexes c Opnjugees")
+  P("d < 0 donc il existe")
+  P("2 racines complexes conjugees")
   P("telles que :")
   P("")
   P("z1 = -b/2a + sqrt(|d|)/2a i")
   P("z2 = -b/2a - sqrt(|d|)/2a i")
  elif d == 0:
-  P("d = 0 d Opnc il existe")
-  P("1 racine reelle d Opuble")
+  P("d = 0 donc il existe")
+  P("1 racine reelle double")
   P("telle que :")
   P("")
   P("x1 = x2 = -b/2a")
   P("")
  elif d > 0:
-  P("d > 0 d Opnc il existe")
+  P("d > 0 dopnc il existe")
   P("2 racines reelles distinctes")
   P("telles que :")
   P("")
@@ -183,7 +183,25 @@ def exec_menu_3():
  I()
 
 def exec_menu_4():
- pass
+ if d <= 0:
+  P(" x | -b/(2a) |")
+  P("-----------------------------")
+  if a > 0:
+   P("P(x)| + m + |")
+  else:
+   P("P(x)| - M - |")
+ else:
+  P(" x | x1 -b/(2a) x2 |")
+  P("-----------------------------")
+  if a > 0:
+   P("P(x)| + 0 - m - 0 + |")
+  else:
+   P("P(x)| - 0 + M + 0 - |")
+ P("-----------------------------")
+ P("Extremum : ")
+ P("  (", Op(-b / (2 * a), r=4), ";", Op(e, r=4), ")")
+ P("")
+ P("")
 
 def exec_menu_5():
  pass
