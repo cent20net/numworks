@@ -11,30 +11,30 @@ I = input
 def def_calc_trinome():
  global a, b, c, d, e, nb, x, y, x1, x2
  while a == 0:
-  a = optimiser(float(I('a = ')))
- b = optimiser(float(I('b = ')))
- c = optimiser(float(I('c = ')))
- d = optimiser(float(b**2 - 4 * a * c))
- e = optimiser(float(a * (-b / (2 * a))**2 + b * (-b / (2 * a)) + c))
+  a = Op(float(I('a = ')))
+ b = Op(float(I('b = ')))
+ c = Op(float(I('c = ')))
+ d = Op(float(b**2 - 4 * a * c))
+ e = Op(float(a * (-b / (2 * a))**2 + b * (-b / (2 * a)) + c))
  if d == 0:
   nb = 1
  else:
   nb = 2
- x = optimiser((-b) / (2 * a))
- y = optimiser((sqrt(abs(d))) / (2 * a))
- x1 = optimiser(min(x + y, x - y))
- x2 = optimiser(max(x - y, x + y))
+ x = Op((-b) / (2 * a))
+ y = Op((sqrt(abs(d))) / (2 * a))
+ x1 = Op(min(x + y, x - y))
+ x2 = Op(max(x - y, x + y))
 
 
 def aff_entete():
- optimiser(9, br=1)
+ Op(9, br=1)
  P("Polynome (equation) de degre 2")
  if a == 0:
   P("P(x)=ax^2+bx+c (=0)")
  else:
   P("P(x)={}{}{} (=0)".format(
-   optimiser(a, ap="x^2", r=4),
-   optimiser(b, p=1, ap="x", r=4, naf=1), optimiser(c, p=1, r=4, naf=1)))
+   Op(a, ap="x^2", r=4),
+   Op(b, p=1, ap="x", r=4, naf=1), Op(c, p=1, r=4, naf=1)))
   P("")
 
 
@@ -111,7 +111,7 @@ def exec_menu_5():
 def exec_menu_6():
  pass
 
-def optimiser(v, av="", ap="", p=0, r=8, naf=0, br=0, par=0):
+def Op(v, av="", ap="", p=0, r=8, naf=0, br=0, par=0):
  # valeur, str avant, str apres, afficher signe, arrondi,
  # ne pas afficher un 0 (1, 2 et 3: resultats differents), sauter v ligne
  # parentheses autour de v
@@ -155,6 +155,6 @@ def menu(warning=""):
   menu()
 
 
-optimiser(9, br=1)
+Op(9, br=1)
 exec_menu(1)
 menu()
