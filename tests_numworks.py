@@ -1,15 +1,9 @@
-# computing. ready august 2019
 # https://nsi.xyz/
-# https://workshop.numworks.com/python/cent20/polynome_degre2
 # Auteurs : Arthur Jacquin, Kevin Fedyna, Vincent Robert.
 
 from math import sqrt
-import sys
 
 a, b, c = 0, 0, 0
-
-signe4 = "-"
-
 
 def def_calc_trinome():
     global a, b, c, d, e, nb, x, y, x1, x2
@@ -42,9 +36,7 @@ def aff_entete():
 
 
 def aff_menu():
-    # Choix 1
     print("1. Changer les valeurs a,b,c")
-    # Choix 2
     if d < 0:
         s = "< 0"
     elif d > 0:
@@ -52,7 +44,6 @@ def aff_menu():
     elif d == 0:
         s = ""
     print("2. Discriminant = {} {} ".format(d, s))
-    # Choix 3
     if d < 0:
         print("3. Racines complexes conjuguees : 2 ")
         print("   z1= {} + {} i".format(x, y))
@@ -64,7 +55,6 @@ def aff_menu():
     elif d == 0:
         print("3. Racine reelle double : 1 ")
         print("   x1=x2= {}".format(x))
-    # Choix 4
     if d < 0:
         if a < 0:
             print("4. Signe : -", end=" ")
@@ -84,74 +74,26 @@ def aff_menu():
         print(", extremum : M")
     else:
         print(", extremum : m")
-    # Choix 5
     if d < 0:
         print("5. Factorisation dans les complexes")
     elif d >= 0:
         print("5. Factorisation dans les reels")
-        # Choix 6
     print("6. Quitter")
-
 
 def exec_menu(i):
     global a, b, c, d, x, y
+    aff_entete()
     if i == 1:
-        a, b, c = 0, 0, 0
-        aff_entete()
-        def_calc_trinome()
-    elif i == 2:
-        pass
-        # Arthur
-    elif i == 3:
-        pass
-        # Arthur
-    elif i == 4:
-        # Vincent
-        aff_entete()
-        print("-----------------------------")
-        if d <= 0:
-            print("  x |        -b/(2a)        |")
-            print("-----------------------------")
-            if a > 0:
-                print("P(x)|     +     m     +     |")
-            else:
-                print("P(x)|     -     M     -     |")
-        else:
-            print("  x |    x1  -b/(2a)  x2    |")
-            print("-----------------------------")
-            if a > 0:
-                print("P(x)|  +  0  -  m  -  0  +  |")
-            else:
-                print("P(x)|  -  0  +  M  +  0  -  |")
-        print("-----------------------------")
-        print("Extremum : ")
-        print("   (", optimiser(-b / (2 * a), r=4), ";", optimiser(e, r=4), ")")
-        print("")
-        print("")
-    elif i == 5:
-        # Kevin
-        if d == 0:
-            print("P(x) = a(x-(-b/2a))^2")
-            if x1 != 0:
-                print(optimiser(-x1, "P(x) = {}(x".format(a), ")^2", p=1))
-            else:
-                print("P(x) = {}x^2".format(a))
-        elif d > 0:
-            print("P(x) = a(x-x1)(x-x2)")
-            print(optimiser(-x2,optimiser(-x1,"P(x) = {}(x".format(a),")(x",p=1,naf=2,r=4),")",p=1,naf=2,r=4))
-        else:
-            print("P(z) = a(z-z1)(z-z2)\nAvec:")
-            print(optimiser(-x,"(z-z1) = (z",optimiser(y,ap="i",r=4,naf=1)+")",r=4,naf=2))
-            print(optimiser(-x,"(z-z2) = (z",optimiser(-y,ap="i",r=4,naf=1)+")",r=4,naf=2))
-    elif i == 6:
-        pass
-    if i != 6 and i != 1:
-        input()
+      a, b, c = 0, 0, 0
+      def_calc_trinome()
+    pass
 
 
-def optimiser(v, av="", ap="", p=0, r=8, naf=0, br=0):
+
+def optimiser(v, av="", ap="", p=0, r=8, naf=0, br=0, par=0):
     # valeur, str avant, str apres, afficher signe, arrondi,
     # ne pas afficher un 0 (1, 2 et 3: resultats differents), sauter v ligne
+    # parentheses autour de v
     if br != 0:
         for i in range(v):
             print("")
@@ -166,10 +108,12 @@ def optimiser(v, av="", ap="", p=0, r=8, naf=0, br=0):
             v = int(v)
         else:
             v = round(v, r)
-        if av == "" and ap == "" and p == 0:
+        if av == "" and ap == "" and p == 0 and par == 0:
             return v
         if p == 1 and v > 0:
             v = "+" + str(v)
+        if par == 1 and v < 0:
+            v = "({})".format(v)
     return str(av) + str(v) + str(ap)
 
 
@@ -193,12 +137,3 @@ def menu(warning=""):
 optimiser(9, br=1)
 exec_menu(1)
 menu()
-
-# Supprimer 7 lignes ci dessous pour tester sur la numworks
-s = 0
-for name in dir():
-    print("nom var = " + name)
-    print(globals()[name])
-    print(sys.getsizeof(globals()[name]))
-    s = s + sys.getsizeof(globals()[name])
-    print(s)
