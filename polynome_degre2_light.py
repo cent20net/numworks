@@ -1,3 +1,4 @@
+# Refuse de marcher sur la numworks. aucun pb sur spyder.
 # computing. ready august 2019
 # https://nsi.xyz/
 # https://workshop.numworks.com/python/cent20/polynome_degre2
